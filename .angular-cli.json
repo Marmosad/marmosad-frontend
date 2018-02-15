@@ -9,7 +9,8 @@
       "outDir": "dist",
       "assets": [
         "assets",
-        "favicon.ico"
+        "assets/goose.svg",
+        "goose.ico"
       ],
       "index": "index.html",
       "main": "main.ts",
