@@ -1,0 +1,17 @@
+#global-navbar-root{
+	position: relative;
+	padding: 0%;
+	margin: 0%;
+}
+#global-navbar-strip{
+	height: 10vw;
+	width: 100vw;
+	padding: 0;
+	margin: 0;
+    background: #FFEAA7;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) 
+}
