@@ -56,3 +56,13 @@ typings/
 
 # dotenv environment variables file
 .env
+
+# User-specific stuff:
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/dictionaries
+
+
+
+
+

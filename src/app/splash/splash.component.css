@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Fascinate');
+app-splash{
+  width: 100vw;
+  height: 20vw;
+  border-style: solid;
+}
+.splash-wrapper {
+  height: 40vw;
+  width: 30vw;
+
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  margin: 0 0 0 0;
+  transform: translate(-50%, -50%);
+}
+.center-elements{
+  width: 55vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0 0 0 0;
+  padding-bottom: 4.5vw;
+  transform: translate(-50%, -50%);
+  border-bottom: 3vw solid #FFEAA7;
+}
+h1{
+  margin: 3vw 0 0 0;
+  display: inline-block;
+  font-size: 6vw;
+  font-family: 'Fascinate', serif;
+  color: #FFEAA7;
+  vertical-align: top;
+}
+.goose-icon{
+  display: inline-block;
+  padding: 0 7vw 0 0;
+  height: 15vw;
+  width: 15vw;
+}
+

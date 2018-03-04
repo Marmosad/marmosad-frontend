@@ -1,11 +1,23 @@
-.goose-icon{
-  padding: 0;
-  height: 6vw;
-  width: 6vw;
+@import url('https://fonts.googleapis.com/css?family=Fascinate');
+.center-elements{
   position: absolute;
   top: 50%;
   left: 50%;
   margin: 0 0 0 0;
   transform: translate(-50%, -50%);
+}
+h1{
+  margin: 1vw 0 0 0;
+  display: inline-block;
+  font-size: 3vw;
+  font-family: 'Fascinate', black, serif;
+  color: #e17055;
+  vertical-align: top;
+}
+.goose-icon{
+  display: inline-block;
+  padding: 0;
+  height: 6vw;
+  width: 6vw;
   box-shadow: 0vw 0vw 1vw black;
 }
