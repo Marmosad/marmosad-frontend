@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {
   trigger,
   state,
@@ -12,14 +12,12 @@ import {
   templateUrl: './splash.component.html',
   styleUrls: [ './splash.component.css' ],
   animations: [
-    trigger ('splashAnimationState', [
+    trigger('splashAnimationState', [
       state('start', style({
-        height: '30vw',
-        width: '30vw'
+        transform: 'translateX(-50%) translateY(-50%)'
       })),
       state('end', style({
-        height: '6vw',
-        width: '6vw'
+        transform: 'translateX(100%) translateY(-50%)'
       })),
       transition('start => end', animate('600ms ease-in'))
     ])
@@ -29,6 +27,7 @@ export class SplashComponent implements OnInit {
   show = true;
 
   constructor() {
+
   }
 
   ngOnInit() {
