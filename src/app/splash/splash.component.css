@@ -20,9 +20,9 @@ app-splash{
   top: 50%;
   left: 50%;
   margin: 0 0 0 0;
-  padding-bottom: 4.5vw;
+  padding-bottom: 2vw;
   transform: translate(-50%, -50%);
-  border-bottom: 3vw solid #FFEAA7;
+  border-bottom: 1vw solid #FFEAA7;
 }
 h1{
   margin: 3vw 0 0 0;
@@ -31,11 +31,16 @@ h1{
   font-family: 'Fascinate', serif;
   color: #FFEAA7;
   vertical-align: top;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 .goose-icon{
   display: inline-block;
-  padding: 0 7vw 0 0;
+  margin: 0 7vw 0 0;
   height: 15vw;
   width: 15vw;
+  box-shadow: 0 3px 9px rgba(0,0,0,0.12), 0 3px 9px rgba(0,0,0,0.24);
 }
 
