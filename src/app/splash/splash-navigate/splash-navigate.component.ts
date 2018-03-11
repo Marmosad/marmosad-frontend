@@ -15,10 +15,10 @@ import {
   animations: [
     trigger('splashButtonsAnimationState', [
       state('start', style({
-        transform: 'translateX(-50%) translateY(-50%)'
+        transform: 'translateX(-50%) translateY(-100%)'
       })),
       state('end', style({
-        transform: 'translateX(-200%) translateY(-50%)'
+        transform: 'translateX(-200%) translateY(-100%)'
       })),
       transition('start => end', animate('600ms ease-in'))
     ])

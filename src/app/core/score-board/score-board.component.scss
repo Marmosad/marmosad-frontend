@@ -1,0 +1,28 @@
+mat-card{
+  padding: 0;
+}
+.score-card {
+  position: absolute;
+  background-color: white;
+  width: 16vw;
+  top: 5.5vw;
+  bottom: 19.5vw;
+  left: 0.5vw;
+  padding: 0;
+}
+
+.score-top {
+  margin-top: 100px;
+  height: 1.8vw;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.16), 0 2px 3px rgba(0,0,0,0.23);
+  background: #FFEAA7;
+  color: #e17055;
+}
+
+h1{
+  margin: 0 0 0 0;
+  padding-top: 0.3vw;
+  text-align: center;
+  font-size: 1vw;
+}
+

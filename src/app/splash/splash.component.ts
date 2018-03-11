@@ -10,7 +10,7 @@ import {
 @Component({
   selector: 'app-splash',
   templateUrl: './splash.component.html',
-  styleUrls: [ './splash.component.css' ],
+  styleUrls: ['./splash.component.css'],
   animations: [
     trigger('splashAnimationState', [
       state('start', style({

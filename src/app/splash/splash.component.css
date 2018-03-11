@@ -20,7 +20,7 @@ app-splash{
   top: 50%;
   left: 50%;
   margin: 0 0 0 0;
-  padding-bottom: 2vw;
+  padding-bottom: 2.3vw;
   transform: translate(-50%, -50%);
   border-bottom: 1vw solid #FFEAA7;
 }
