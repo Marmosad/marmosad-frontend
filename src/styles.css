@@ -1,7 +1,8 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 body{
   background-color: #e17055;
   background-attachment: fixed;
   margin: 0%;
   padding: 0%;
 }
-
