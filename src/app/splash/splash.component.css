@@ -22,14 +22,14 @@ app-splash{
   margin: 0 0 0 0;
   padding-bottom: 2.3vw;
   transform: translate(-50%, -50%);
-  border-bottom: 1vw solid #FFEAA7;
+  border-bottom: 1vw solid #ff5b5b;
 }
 h1{
   margin: 3vw 0 0 0;
   display: inline-block;
   font-size: 6vw;
   font-family: 'Fascinate', serif;
-  color: #FFEAA7;
+  color: #ff5b5b;
   vertical-align: top;
   -moz-user-select: none;
   -ms-user-select: none;

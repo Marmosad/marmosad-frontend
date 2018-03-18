@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule, MatCardModule, MatListModule, MatIconModule } from '@angular/material';
+import { FlexLayoutModule} from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { GlobalNavbarComponent } from './global-navbar/global-navbar.component';
@@ -14,6 +15,8 @@ import { ChatComponent } from './core/chat/chat.component';
 import { SocketIoService } from './socket-io/socket-io.service';
 import { FormsModule } from '@angular/forms';
 import { ScoreBoardComponent } from './core/score-board/score-board.component';
+import { BoardCoreComponent } from './core/board-core/board-core.component';
+import { GameBoardComponent } from './core/game-board/game-board.component';
 
 
 @NgModule({
@@ -26,6 +29,8 @@ import { ScoreBoardComponent } from './core/score-board/score-board.component';
     SplashNavigateComponent,
     ChatComponent,
     ScoreBoardComponent,
+    BoardCoreComponent,
+    GameBoardComponent,
   ],
   imports: [
     MatCardModule,
@@ -35,7 +40,8 @@ import { ScoreBoardComponent } from './core/score-board/score-board.component';
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FlexLayoutModule
   ],
   providers: [SocketIoService],
   bootstrap: [AppComponent]
