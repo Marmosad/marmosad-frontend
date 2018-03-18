@@ -2,7 +2,7 @@
 
 #enter:hover, #about:hover, h1:hover{
   background-color: white;
-  color: #ffa082;
+  color: #ff7f60;
   cursor: pointer;
 }
 
@@ -34,8 +34,8 @@ h1 {
   margin: 0;
   padding: 1vw 4vw;
   height: 6vw;
-  background-color: #FFEAA7;
-  color: #e17055;
+  background-color: #ff5b5b;
+  color: #3b3e47;
   font-family: 'Fascinate', serif;
   horiz-align: center;
   font-size: 5vw;

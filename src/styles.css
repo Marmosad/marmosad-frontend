@@ -1,7 +1,9 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 body{
-  background-color: #e17055;
+  background-image: url("./assets/rect28.png");
+  background-size:cover;
+  background-color: #cccccc;
   background-attachment: fixed;
   margin: 0%;
   padding: 0%;
