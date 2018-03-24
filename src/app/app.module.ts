@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule, MatCardModule, MatListModule, MatIconModule } from '@angular/material';
-import { FlexLayoutModule} from '@angular/flex-layout';
+import { MatInputModule, MatCardModule, MatListModule, MatIconModule, MatFormFieldModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { GlobalNavbarComponent } from './global-navbar/global-navbar.component';
@@ -37,6 +37,7 @@ import { GameBoardComponent } from './core/game-board/game-board.component';
     MatInputModule,
     MatListModule,
     MatIconModule,
+    MatFormFieldModule,
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
