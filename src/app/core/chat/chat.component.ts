@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketIoService } from '../../socket-io/socket-io.service';
+import { Message } from '../../socket-io/message';
 
 @Component({
   selector: 'app-chat',
@@ -9,29 +10,28 @@ import { SocketIoService } from '../../socket-io/socket-io.service';
   ]
 })
 export class ChatComponent implements OnInit {
-  testMsg = 'sup';
   ioConnection: any;
-  testMsgs: string[] = ['hi', 'bye', 'joined', 'test', 'something really long to see how it does really long to see how it', 'bye'];
-  messageContent: string;
+  messages: string[] = [];
 
   constructor(private socketService: SocketIoService) {
-    this.socketStart(socketService);
+    this.socketStart();
   }
 
   ngOnInit() {
   }
 
-  private socketStart(socketService): void {
-    socketService.initSocket();
-    this.ioConnection = this.socketService.onDong().subscribe((dong: string) => {
-      this.testMsg = dong;
+  private socketStart(): void {
+    this.socketService.initSocket();
+    this.ioConnection = this.socketService.onMessage().subscribe((message: Message) => {
+      this.messages.push(message.from + ': ' + message.msg);
     });
   }
-
-  sendMessage = (): void => {
-  };
-
-  get getColor() {
-    return 'color: ThemePalette';
+  sendMessage = (message: string, ): void => {
+    const packet: Message = {msg: message, from: this.socketService.getSocketId()};
+    this.socketService.send(packet);
+    // this.messages.push(message);
+    message = '';
   }
 }
+
+

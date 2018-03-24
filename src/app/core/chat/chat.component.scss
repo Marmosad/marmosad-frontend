@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Fascinate');
-.chat-card{
+
+.chat-card {
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
-h1{
+
+h1 {
   font-family: 'Fascinate', black, serif;
   font-size: 2.5vh;
   background-color: #ff5b5b;
@@ -11,3 +14,33 @@ h1{
   text-align: center;
   color: #3b3e47;
 }
+
+mat-list-item {
+  background-color: #ff8e88;
+  padding: 0;
+  margin-bottom: 3px;
+  margin-left: 2px;
+  margin-right: 2px;
+  color: white;
+}
+
+mat-list {
+  color: white;
+  padding: 0;
+}
+
+.chat {
+  overflow-y: scroll;
+}
+
+.chat-input {
+  margin:0;
+  padding: 0;
+  border-bottom: #ff8e88;
+  border-style: solid;
+  border-width: 0 0 3px 0;
+  outline: 0 none;
+  text-indent: 10px;
+}
+
+
