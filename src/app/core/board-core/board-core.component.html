@@ -1,4 +1,4 @@
-<mat-card class="name-field-div" *ngIf="!hasName" fxLayout="column">
+<mat-card class="name-field-div" *ngIf="!hasName" fxLayout="column" [@nameAnimationState] = 'getState'>
   <div class="name-field-top"fxFlex="20">
     <h1>Enter Your Name!</h1>
   </div>
