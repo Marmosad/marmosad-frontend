@@ -33,6 +33,11 @@ export class SplashNavigateComponent implements OnInit {
     this.animate(this.route);
   }
 
+  // same as toCore() for now
+  toAbout(): void {
+    this.animate(this.route);
+  }
+
   animate = (callRoute): void => {
     console.log('redirecting to core');
     this.routeOut.emit(null);
