@@ -9,40 +9,65 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   animations: [
     trigger('nameAnimationState', [
       state('start', style({
-        transform: 'translateX(0%) translateY(150%)'
+        transform: 'translateX(0%) translateY(180%)'
       })),
       state('end', style({
-        transform: 'translateX(0%) translateY(-0%)'
+        transform: 'translateX(0%) translateY(0%)'
       })),
-      transition('start => end', animate('600ms ease-in'))
+      transition('start => end', animate('500ms ease-in')),
+      transition('end => start', animate('300ms ease-in'))
+    ]),
+    trigger('boardAnimationState', [
+      state('start', style({
+        transform: 'translateX(0%) translateY(-170%)'
+      })),
+      state('end', style({
+        transform: 'translateX(0%) translateY(0%)'
+      })),
+      transition('start => end', animate('400ms ease-in')),
     ])
   ]
 })
 export class BoardCoreComponent implements OnInit {
   playerName: string;
-  hasName: boolean;
-  show = true;
+  showName = true;
+  hasName = false;
+  showBoard = false;
 
   constructor(private socketService: SocketIoService) {
   }
 
   ngOnInit() {
     setTimeout(() => {
-      this.toggle();
+      this.toggleName();
     }, 1);
   }
 
   setPlayerName = (playerName: string): void => {
-    this.playerName = playerName;
-    this.hasName = true;
-    this.socketService.setPlayerName(playerName);
+    this.toggleName();
+    setTimeout(() => {
+      this.playerName = playerName;
+      this.hasName = true;
+      this.socketService.setPlayerName(playerName);
+      setTimeout(() => {
+        this.toggleBoard();
+      }, 10);
+    }, 300);
   }
 
-  get getState(): String {
-    return this.show ? 'start' : 'end';
+  get getNameState(): String {
+    return this.showName ? 'start' : 'end';
   }
 
-  toggle() {
-    this.show = !this.show;
+  private toggleName() {
+    this.showName = !this.showName;
+  }
+
+  get getBoardState(): String {
+    return this.showBoard ? 'end' : 'start';
+  }
+
+  private toggleBoard() {
+    this.showBoard = !this.showBoard;
   }
 }
