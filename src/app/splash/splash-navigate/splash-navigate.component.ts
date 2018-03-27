@@ -33,7 +33,7 @@ export class SplashNavigateComponent implements OnInit {
     this.animate(this.route);
   }
 
-  // same as toCore() for now
+  // TODO
   toAbout(): void {
     this.animate(this.route);
   }
