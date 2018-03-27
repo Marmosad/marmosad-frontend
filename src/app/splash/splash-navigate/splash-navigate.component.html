@@ -1,8 +1,8 @@
-<div class="overlay" (click)="toCore()" [@splashButtonsAnimationState] = 'getState'>
-  <div id="enter">
+<div class="overlay" [@splashButtonsAnimationState] = 'getState'>
+  <div id="enter" (click)="toCore()">
     <h1>Enter</h1>
   </div>
-  <div id="about">
+  <div id="about" (click)="toAbout()">
     <h1>About</h1>
   </div>
 </div>
