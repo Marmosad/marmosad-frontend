@@ -1,4 +1,4 @@
-<mat-card class="name-field-div" *ngIf="!hasName" fxLayout="column" [@nameAnimationState] = 'getState'>
+<mat-card class="name-field-div" *ngIf="!hasName" fxLayout="column" [@nameAnimationState] = 'getNameState'>
   <div class="name-field-top"fxFlex="20">
     <h1>Enter Your Name!</h1>
   </div>
@@ -7,7 +7,7 @@
   </mat-card>
 </mat-card>
 
-<div class="board-core" fxLayout="row" *ngIf="hasName">
+<div class="board-core" fxLayout="row" *ngIf="hasName" [@boardAnimationState] = 'getBoardState'>
   <div fxLayout="row" fxFill fxLayoutAlign="space-between stretch">
     <div class="user-board" fxLayout="column" fxFlex="20" fxLayoutAlign="space-between stretch">
       <app-score-board fxFlex="58"></app-score-board>

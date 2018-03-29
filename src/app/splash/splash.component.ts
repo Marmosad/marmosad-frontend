@@ -19,7 +19,7 @@ import {
       state('end', style({
         transform: 'translateX(100%) translateY(-50%)'
       })),
-      transition('start => end', animate('600ms ease-in'))
+      transition('start => end', animate('500ms ease-in'))
     ])
   ]
 })
