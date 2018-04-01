@@ -1,5 +1,20 @@
-<mat-card class="game-board-card" fxFill>
-  <div class="game-board-top">
+<mat-card class="game-board-card" fxFill fxLayout="column" fxLayoutAlign="space-between stretch" >
+  <div class="game-board-top"fxFlex="4">
     <h1>Game Board</h1>
+  </div>
+  <div fxFlex="40" class="submissions">
+
+  </div>
+  <div fxFlex="40" class="hand" fxLayout="row" fxLayoutGap="6px" fxLayoutAlign="space-between stretch">
+        <mat-card class="card" *ngFor="let card of hand" fxFlex>
+          <p>{{card.body}}</p>
+          <h3>{{card.cardId}}</h3>
+        </mat-card>
+  </div>
+  <div fxFlex="10" class="controls" fxLayoutGap="10px">
+    <button mat-raised-button fxFlex>Button</button>
+    <button mat-raised-button fxFlex>Button</button>
+    <button mat-raised-button fxFlex>Button</button>
+    <button mat-raised-button fxFlex>Button</button>
   </div>
 </mat-card>

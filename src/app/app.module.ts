@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule, MatCardModule, MatListModule, MatIconModule, MatFormFieldModule } from '@angular/material';
+import {MatButtonModule} from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
@@ -34,6 +35,7 @@ import { GameBoardComponent } from './core/game-board/game-board.component';
   ],
   imports: [
     MatCardModule,
+    MatButtonModule,
     MatInputModule,
     MatListModule,
     MatIconModule,
