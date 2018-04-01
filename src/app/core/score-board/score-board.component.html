@@ -1,5 +1,14 @@
-<mat-card class="score-card" fxFlex>
-  <div class="score-top">
+<mat-card class="score-card" fxFlex  fxLayout="column" fxFill fxLayoutAlign="start stretch">
+  <div class="score-top" fxFlex="10">
     <h1>Score Board</h1>
+  </div>
+  <div class="scores" fxFlex="90" fxLayoutAlign="start stretch" fxLayout="column">
+    <mat-list fxLayoutAlign="start stretch" fxLayout="column" >
+      <mat-list-item *ngFor="let player of getPlayers" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="40px">
+        <div class="score-row" fxFlex fxLayout="row" fxLayoutAlign="space-between stretch">
+          <h2 fxFlex="60">{{player.playerName}}</h2> <h2 fxFlex="30">: </h2> <h2 fxFlex="10">{{player.score}}</h2>
+        </div>
+      </mat-list-item>
+    </mat-list>
   </div>
 </mat-card>

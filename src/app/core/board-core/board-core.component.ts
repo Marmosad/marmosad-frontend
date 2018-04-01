@@ -35,6 +35,7 @@ export class BoardCoreComponent implements OnInit {
   showBoard = false;
 
   constructor(private socketService: SocketIoService) {
+    socketService.createFakeDisplay(4);
   }
 
   ngOnInit() {
@@ -70,4 +71,5 @@ export class BoardCoreComponent implements OnInit {
   private toggleBoard() {
     this.showBoard = !this.showBoard;
   }
+
 }

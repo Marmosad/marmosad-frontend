@@ -9,11 +9,11 @@
 
 <div class="board-core" fxLayout="row" *ngIf="hasName" [@boardAnimationState] = 'getBoardState'>
   <div fxLayout="row" fxFill fxLayoutAlign="space-between stretch">
-    <div class="user-board" fxLayout="column" fxFlex="20" fxLayoutAlign="space-between stretch">
+    <div class="user-board" fxLayout="column" fxFlex="18" fxLayoutAlign="space-between stretch">
       <app-score-board fxFlex="58"></app-score-board>
       <app-chat fxFlex="40"></app-chat>
     </div>
-    <div class="game-board" fxLayout="column" fxFlex="78" fxLayoutAlign="space-between stretch">
+    <div class="game-board" fxLayout="column" fxFlex="81" fxLayoutAlign="space-between stretch">
       <app-game-board fxFill></app-game-board>
     </div>
   </div>
