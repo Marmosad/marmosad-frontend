@@ -1,22 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { SocketIoService } from '../../socket-io/socket-io.service';
-import { Player } from '../../socket-io/player';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Player } from '../../interfaces/player';
+import { DisplayService } from '../display-service/display-service.service';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-score-board',
   templateUrl: './score-board.component.html',
   styleUrls: ['./score-board.component.scss']
 })
-export class ScoreBoardComponent implements OnInit {
+export class ScoreBoardComponent implements OnInit, OnDestroy {
   private players: Player[] = [];
-  constructor(socketService: SocketIoService) {
-    this.players = socketService.getDisplay.players;
+
+  constructor(private displayService: DisplayService) {
   }
 
   ngOnInit() {
+    this.displayService.getScoreSubject.subscribe((players: Player[]) => {
+      this.players = players;
+      console.log(players);
+    });
   }
 
-  get getPlayers(): Player[] {
-    return this.players;
+  ngOnDestroy() {
   }
 }

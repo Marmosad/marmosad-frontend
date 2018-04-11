@@ -4,7 +4,7 @@
   </div>
   <div class="scores" fxFlex="90" fxLayoutAlign="start stretch" fxLayout="column">
     <mat-list fxLayoutAlign="start stretch" fxLayout="column" >
-      <mat-list-item *ngFor="let player of getPlayers" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="40px">
+      <mat-list-item *ngFor="let player of players" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="40px">
         <div class="score-row" fxFlex fxLayout="row" fxLayoutAlign="space-between stretch">
           <h2 fxFlex="60">{{player.playerName}}</h2> <h2 fxFlex="30">: </h2> <h2 fxFlex="10">{{player.score}}</h2>
         </div>

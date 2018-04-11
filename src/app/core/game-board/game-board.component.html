@@ -1,20 +1,27 @@
-<mat-card class="game-board-card" fxFill fxLayout="column" fxLayoutAlign="space-between stretch" >
+<mat-card class="game-board-card" fxFill fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="2vh">
   <div class="game-board-top"fxFlex="4">
     <h1>Game Board</h1>
   </div>
-  <div fxFlex="40" class="submissions">
-
+  <div fxFlex="39" class="submissions">
+    <mat-card class="blackCard" fxFlex draggable="true" >
+      <p class="blackCardText">{{blackCard.body}}</p>
+      <h3 class="blackCardId">{{blackCard.cardId}}</h3>
+    </mat-card>
+    <mat-card class="whiteCard" *ngFor="let card of submissions" fxFlex>
+      <p>{{card.body}} 11</p>
+      <h3>{{card.cardId}}</h3>
+    </mat-card>
   </div>
-  <div fxFlex="40" class="hand" fxLayout="row" fxLayoutGap="6px" fxLayoutAlign="space-between stretch">
-        <mat-card class="card" *ngFor="let card of hand" fxFlex>
+  <div fxFlex="10" class="controls" fxLayoutGap="10px">
+    <button (click)="startGame()" mat-raised-button fxFlex>Start Game</button>
+    <button mat-raised-button fxFlex>Button</button>
+    <button mat-raised-button fxFlex>Button</button>
+    <button mat-raised-button fxFlex>Button</button>
+  </div>
+  <div fxFlex="39" class="hand" fxLayout="row" fxLayoutGap="6px" fxLayoutAlign="space-between stretch">
+        <mat-card class="whiteCard" *ngFor="let card of hand" fxFlex draggable="true" (click)="submitCard(card)">
           <p>{{card.body}}</p>
           <h3>{{card.cardId}}</h3>
         </mat-card>
-  </div>
-  <div fxFlex="10" class="controls" fxLayoutGap="10px">
-    <button mat-raised-button fxFlex>Button</button>
-    <button mat-raised-button fxFlex>Button</button>
-    <button mat-raised-button fxFlex>Button</button>
-    <button mat-raised-button fxFlex>Button</button>
   </div>
 </mat-card>

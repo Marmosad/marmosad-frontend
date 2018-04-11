@@ -11,7 +11,7 @@ import {
 @Component({
   selector: 'app-splash-navigate',
   templateUrl: './splash-navigate.component.html',
-  styleUrls: [ './splash-navigate.component.css' ],
+  styleUrls: ['./splash-navigate.component.css'],
   animations: [
     trigger('splashButtonsAnimationState', [
       state('start', style({
@@ -25,7 +25,7 @@ import {
   ]
 })
 export class SplashNavigateComponent implements OnInit {
-  show = true;
+  private show = true;
 
   @Output() routeOut: EventEmitter<any> = new EventEmitter();
 
@@ -38,17 +38,19 @@ export class SplashNavigateComponent implements OnInit {
     this.animate(this.route);
   }
 
-  animate = (callRoute): void => {
+  private animate = (callRoute): void => {
     console.log('redirecting to core');
     this.routeOut.emit(null);
     this.toggle();
     setTimeout(() => {
       callRoute();
-    }, 600);
+    }, 500);
+  };
+
+  private route = (): void => {
+    this.router.navigate(['/core']);
   }
-  route = (): void => {
-    this.router.navigate([ '/core' ]);
-  }
+
   constructor(private router: Router) {
   }
 
