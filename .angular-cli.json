@@ -28,6 +28,32 @@
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }
+    },
+    {
+      "root": "src",
+      "outDir": "dist-server",
+      "assets": [
+        "assets",
+        "assets/goose.svg",
+        "goose.ico"
+      ],
+      "index": "index.html",
+      "main": "main.server.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.server.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.css"
+      ],
+      "scripts": [],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      },
+      "platform": "server",
+      "name": "drag-animation"
     }
   ],
   "e2e": {

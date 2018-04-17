@@ -42,7 +42,7 @@ import { DisplayService } from './core/display-service/display-service.service';
     MatIconModule,
     MatFormFieldModule,
     FormsModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
     FlexLayoutModule

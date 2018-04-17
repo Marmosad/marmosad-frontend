@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 import { Message } from '../../interfaces/message';
 import { WhiteCard } from '../../interfaces/white-card';
 import { Player } from '../../interfaces/player';
-import { Observer } from 'rxjs/Observer';
 import { Subject } from 'rxjs/Subject';
 import { BlackCard } from '../../interfaces/black-card';
 
@@ -17,6 +16,7 @@ export class DisplayService {
   private handSubject = new Subject<WhiteCard[]>();
   private submissionsSubject = new Subject<WhiteCard[]>();
   private blackCardSubject = new Subject<BlackCard>();
+  private isJudge: boolean;
 
   constructor(private socketService: SocketIoService) {
     this.socketService.onDisplayUpdate().subscribe((display: Display) => {
@@ -25,6 +25,7 @@ export class DisplayService {
       this.handSubject.next(this.getHand(display.players, this.socketService.socketId));
       this.submissionsSubject.next(display.submissions);
       this.blackCardSubject.next(display.blackCard);
+      this.isJudge = (this.socketService.getSocketId() === this.display.currentJudge);
       console.log('display service got an update');
       console.log(display);
     });
@@ -58,4 +59,7 @@ export class DisplayService {
     return this.display;
   }
 
+  get getIsJudge(): boolean {
+    return this.isJudge;
+  }
 }
