@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { ScoreBoardComponent } from './core/score-board/score-board.component';
 import { BoardCoreComponent } from './core/board-core/board-core.component';
 import { GameBoardComponent } from './core/game-board/game-board.component';
+import { DisplayService } from './core/display-service/display-service.service';
 
 
 @NgModule({
@@ -41,12 +42,12 @@ import { GameBoardComponent } from './core/game-board/game-board.component';
     MatIconModule,
     MatFormFieldModule,
     FormsModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
     FlexLayoutModule
   ],
-  providers: [SocketIoService],
+  providers: [SocketIoService, DisplayService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

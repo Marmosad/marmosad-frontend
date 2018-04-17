@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Message } from './message';
+import { Message } from '../interfaces/message';
 import * as SocketIo from 'socket.io-client';
-import { Display } from './display';
-import { WhiteCard } from './white-card';
-import { Player } from './player';
+import { Display } from '../interfaces/display';
+import { WhiteCard } from '../interfaces/white-card';
+import { Player } from '../interfaces/player';
 
 
 @Injectable()
 export class SocketIoService {
   private playerName: string;
   private socket;
-  private readonly SERVER_URL = 'http://localhost:8080';
+  private readonly SERVER_URL = 'http://localhost:8081';
   private display: Display;
   private players: Player[] = [];
   private submissions: WhiteCard[] = [];
@@ -47,7 +47,6 @@ export class SocketIoService {
       blackCard: {
         cardId: 122,
         body: 'This is a body of the black card, randomly generated',
-        owner: 'Stellar, he\'s always judge',
       },
       currentJudge: 'Stellar, she\'s always judge',
       submissions: this.submissions,
@@ -68,8 +67,18 @@ export class SocketIoService {
   }
 
   public initSocket(): void {
-    this.socket = SocketIo(this.SERVER_URL, { query: 'name=' + this.playerName });
+    if (this.socket === undefined) {
+      this.socket = SocketIo({ query: 'name=' + this.playerName });
+      // this.socket = SocketIo(this.SERVER_URL, { query: 'name=' + this.playerName });
+    } else {
+      this.socket.connect();
+    }
     this.socket.emit('userJoined');
+    console.log('init ran ' + this.socket);
+  }
+
+  get hasSocket() {
+    return !(this.socket === undefined);
   }
 
   public send(message: Message): void {
@@ -91,5 +100,45 @@ export class SocketIoService {
         });
       }
     );
+  }
+
+  public onDisplayUpdate(): Observable<Display> {
+    return new Observable<Display>(observer => {
+        this.socket.on('updateDisplay', (data: Display) => {
+          console.log('Socket got an update for display');
+          observer.next(data);
+        });
+      }
+    );
+  }
+
+  public onReset(): Observable<any> {
+    return new Observable<any>(observer => {
+        this.socket.on('boardReset', (data: any) => {
+          observer.next(data);
+        });
+      }
+    );
+  }
+
+  public closeSocket(): void {
+    return this.socket.disconnect();
+  }
+
+  public startGame(): void {
+    this.socket.emit('startGame', null);
+  }
+
+  public resetGame(): void {
+    this.socket.emit('reset', null);
+  }
+
+  public submitCard(card): void {
+    this.socket.emit('submission', card);
+  }
+
+  public submitJudgement(card): void {
+    this.socket.emit('judgment', card);
+    console.log('judged');
   }
 }
