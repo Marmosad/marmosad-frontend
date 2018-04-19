@@ -28,6 +28,15 @@ h1 {
   color: #3b3e47;
 }
 
+p{
+  color: #ff5b5b;
+  text-align: end;
+  margin-bottom: 4vw;
+  margin-right: 1vw;
+  position: relative;
+  top: 57%;
+}
+
 input{
   margin: 5px;
   width: 28vw;
