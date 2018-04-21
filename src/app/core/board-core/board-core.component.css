@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
 .board-core {
   position: absolute;
   padding: 0;
@@ -20,8 +22,9 @@
 }
 
 h1 {
-  font-family: 'Fascinate', black, serif;
+  font-family: 'Comfortaa', cursive;
   font-size: 5.5vh;
+  font-weight: bold;
   background-color: #ff5b5b;
   margin: 0;
   text-align: center;
@@ -35,6 +38,8 @@ p{
   margin-right: 1vw;
   position: relative;
   top: 57%;
+  font-family: 'Comfortaa', cursive;
+  font-weight: lighter;
 }
 
 input{
@@ -46,6 +51,8 @@ input{
   transform: translate(-50%, -50%);
   font-size: 2.5vw;
   border-width: 0 0 5px 0;
+  font-family: 'Comfortaa', cursive;
+  font-weight: lighter;
   /* box-shadow: 0 3px 9px rgba(0,0,0,0.12), 0 3px 9px rgba(0,0,0,0.24); */
 }
 input:focus {
