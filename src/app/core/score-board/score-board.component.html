@@ -5,8 +5,8 @@
   <div class="scores" fxFlex="90" fxLayoutAlign="start stretch" fxLayout="column">
     <mat-list fxLayoutAlign="start stretch" fxLayout="column" >
       <mat-list-item *ngFor="let player of players" fxLayout="column" fxLayoutAlign="start stretch">
-        <div class="score-row" fxFlex fxLayout="row" fxLayoutAlign="start stretch">
-          <h2 class="player">{{player.playerName}}: {{player.score}}</h2>
+        <div class="score-row" fxFlex fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="40px">
+          <h2 class="player" fxFlex="40">{{player.playerName}}: {{player.score}}</h2>
           <h2 class="isJudge" *ngIf="player.isJudge"> - judge</h2>
         </div>
       </mat-list-item>
