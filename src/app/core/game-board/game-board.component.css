@@ -1,11 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
 .game-board-card {
   margin: 0;
   padding: 0;
 }
 
 h1 {
-  font-family: 'Fascinate', black, serif;
+  font-family: 'Comfortaa', cursive;
+  font-weight: bold;
   font-size: 3vh;
+  padding-top: 0.5vh;
   background-color: #ff5b5b;
   margin: 0;
   text-align: center;
@@ -23,16 +27,27 @@ h1 {
   max-width: 14%;
 }
 
+h3{
+  font-family: 'Comfortaa', cursive;
+  font-weight: lighter;
+}
+
 p{
   color: #3b3e47;
+  font-family: 'Comfortaa', cursive;
+  font-weight: bolder;
 }
 
 .blackCardText{
   color: white;
+  font-family: 'Comfortaa', cursive;
+  font-weight: lighter;
 }
 
 .blackCardId{
   color: white;
+  font-family: 'Comfortaa', cursive;
+  font-weight: bolder;
 }
 
 .whiteCard {
@@ -66,7 +81,8 @@ p{
 button {
   background-color: #ff5b5b;
   color: #3b3e47;
-  font-family: 'Fascinate', black, serif;
+  font-family: 'Comfortaa', cursive;
+  font-weight: bold;
   font-size: 3vh;
 }
 

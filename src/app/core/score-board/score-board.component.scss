@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Fascinate');
-@import url('https://fonts.googleapis.com/css?family=Share+Tech');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
 
 .score-card{
   margin: 0;
@@ -12,15 +11,40 @@
   color: #263237;
 }
 
+.player{
+  font-family: 'Comfortaa', cursive;
+  text-align: left;
+  font-weight: bold;
+}
+
+.isJudge{
+  font-family: 'Comfortaa', cursive;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+.score-row{
+  webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+
+h2{
+  color: #3b3e47;
+  font-size: 2.2vh;
+}
+
 h1{
-  font-family: 'Fascinate', black, serif;
-  font-size: 3vh;
+  font-family: 'Comfortaa', cursive;
+  font-weight: bold;
+  font-size: 2.5vh;
   background-color: #ff5b5b;
   margin: 0;
   text-align: center;
   color: #3b3e47;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  padding-top: 0.5vh;
 }
+
 mat-list-item {
   padding: 0;
   margin-bottom: 6px;
@@ -35,13 +59,6 @@ mat-list-item:hover {
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
-h2{
-  margin: 0;
-  color: #3b3e47;
-  padding: 0;
-  font-family: 'Share Tech', sans-serif;
-  font-size: 2.5vh;
-}
 mat-list {
   margin: 0;
   padding: 0;
