@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Fascinate');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
 app-splash{
   width: 100vw;
   height: 20vw;
@@ -15,7 +16,7 @@ app-splash{
   transform: translate(-50%, -50%);
 }
 .center-elements{
-  width: 55vw;
+  width: 60vw;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -26,9 +27,11 @@ app-splash{
 }
 h1{
   margin: 3vw 0 0 0;
+  margin-left: 3vw;
   display: inline-block;
-  font-size: 6vw;
-  font-family: 'Fascinate', serif;
+  font-size: 7vw;
+  font-family: 'Comfortaa', cursive;
+  font-weight: bolder;
   color: #ff5b5b;
   vertical-align: top;
   -moz-user-select: none;
@@ -38,7 +41,7 @@ h1{
 }
 .goose-icon{
   display: inline-block;
-  margin: 0 7vw 0 0;
+  margin: 0 7vw 0 0 0;
   height: 15vw;
   width: 15vw;
   box-shadow: 0 3px 9px rgba(0,0,0,0.12), 0 3px 9px rgba(0,0,0,0.24);

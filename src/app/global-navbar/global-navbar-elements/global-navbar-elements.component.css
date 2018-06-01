@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Fascinate');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
 .center-elements{
   position: absolute;
   top: 50%;
@@ -7,10 +8,11 @@
   transform: translate(-50%, -50%);
 }
 h1{
-  margin: 0.2vw 0 0 0;
+  margin: 0.7vw 0 0 0;
   display: inline-block;
   font-size: 6vh;
-  font-family: 'Fascinate', black, serif;
+  font-family: 'Comfortaa', cursive;
+  font-weight: bolder;
   color: #3b3e47;
   vertical-align: top;
 }

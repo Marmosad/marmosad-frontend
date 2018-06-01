@@ -77,3 +77,20 @@ input:focus {
   margin: 0;
   padding: 0;
 }
+
+button {
+  background-color: #ff5b5b;
+  color: #3b3e47;
+  transform: translate(0%, 220%);
+  font-family: 'Comfortaa', cursive;
+  font-weight: bold;
+  font-size: 3vh;
+  margin: 20px;
+}
+
+button:hover {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+  background-color: white;
+  color: #ff5b5b;
+  cursor: pointer;
+}

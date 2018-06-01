@@ -1,27 +1,29 @@
-@import url('https://fonts.googleapis.com/css?family=Fascinate');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
 
 .chat-card {
   margin: 0;
   padding: 0;
-  overflow: hidden;
+
 }
 
 h1 {
-  font-family: 'Fascinate', black, serif;
+  font-family: 'Comfortaa', cursive;
   font-size: 2.5vh;
   background-color: #ff5b5b;
   margin: 0;
   text-align: center;
   color: #3b3e47;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  padding-top: 0.5vh;
 }
 
 mat-list-item {
   background-color: #ff8e88;
-  padding: 0;
-  margin-bottom: 3px;
-  margin-left: 2px;
-  margin-right: 2px;
+  padding: 1px;
+  margin: 2px;
   color: white;
+  font-family: 'Comfortaa', cursive;
+  font-size: small;
 }
 
 mat-list {
@@ -36,11 +38,23 @@ mat-list {
 .chat-input {
   margin:0;
   padding: 0;
-  border-bottom: #ff8e88;
+  border-bottom: #b0bebe;
   border-style: solid;
-  border-width: 0 0 3px 0;
+  border-width: 0 0 5px 0;
   outline: 0 none;
   text-indent: 10px;
+  font-family: 'Comfortaa', cursive;
+  font-weight: lighter;
+}
+.chat-input:hover {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  border-bottom-color: #ff8e88;
+}
+.chat-input:focus {
+  box-shadow: 0 6px 9px rgba(0,0,0,0.16), 0 6px 9px rgba(0,0,0,0.23);
+  border-bottom: #ff5b5b;
+  border-style: solid;
+  border-width: 0 0 5px 0;
 }
 
 

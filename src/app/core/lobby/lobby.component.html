@@ -1,0 +1,15 @@
+<mat-card class="name-field-div" fxLayout="column" [@nameAnimationState] = 'getNameState'>
+  <div class="name-field-top"fxFlex="20">
+    <h1 *ngIf="!hasName">Enter Your Name!</h1>
+    <h1 *ngIf="hasName">Hello {{playerName}}!</h1>
+  </div>
+  <mat-card class="name-field-card" fxFlex="">
+    <input #input matInput placeholder="Wut's ur name?" (keyup.enter)="[chooseName(input.value)]" maxlength="14">
+    <p>Characters left: {{ 14 - input.value.length }}</p>
+    <div class="row">
+      <button (click)="chooseName(input.value)" mat-raised-button fxFlex>Choose Name</button>
+      <button (click)="enterGame(playerName)" fxFlex>Enter Game</button>
+    </div>
+  </mat-card>
+</mat-card>
+
