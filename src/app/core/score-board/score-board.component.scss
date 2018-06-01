@@ -1,13 +1,65 @@
-@import url('https://fonts.googleapis.com/css?family=Fascinate');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
 .score-card{
   margin: 0;
   padding: 0;
 }
+
+.scores{
+  margin: 0;
+  padding: 0;
+  color: #263237;
+}
+
+.player{
+  font-family: 'Comfortaa', cursive;
+  text-align: left;
+  font-weight: bold;
+}
+
+.isJudge{
+  font-family: 'Comfortaa', cursive;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+.score-row{
+  webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+
+h2{
+  color: #3b3e47;
+  font-size: 2.2vh;
+}
+
 h1{
-  font-family: 'Fascinate', black, serif;
+  font-family: 'Comfortaa', cursive;
+  font-weight: bold;
   font-size: 2.5vh;
   background-color: #ff5b5b;
   margin: 0;
   text-align: center;
   color: #3b3e47;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  padding-top: 0.5vh;
+}
+
+mat-list-item {
+  padding: 0;
+  margin-bottom: 6px;
+  margin-left: 2px;
+  margin-right: 2px;
+  border-left: #ff5b5b 0.5vw solid;
+  border-right: #ff5b5b 0.5vw solid;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+mat-list-item:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+mat-list {
+  margin: 0;
+  padding: 0;
 }

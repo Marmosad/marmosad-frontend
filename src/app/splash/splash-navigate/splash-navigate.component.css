@@ -1,8 +1,8 @@
-  @import url('https://fonts.googleapis.com/css?family=Fascinate');
+  @import url('https://fonts.googleapis.com/css?family=Comfortaa');
 
 #enter:hover, #about:hover, h1:hover{
   background-color: white;
-  color: #ff7f60;
+  color: #ff5b5b;
   cursor: pointer;
 }
 
@@ -16,30 +16,22 @@
 }
 
 #enter{
-  margin: 0 0 0 2vw;
   float: left;
-  width: 15vw;
-  padding-right: 7vw;
-
 }
 
 #about{
   float: right;
-  width: 15vw;
-  margin: 0 2vw 0 0;
-  padding-right: 7vw;
 }
 
 h1 {
   margin: 0;
-  padding: 1vw 4vw;
-  height: 6vw;
+  padding: 1vw 4vw 1vw 3.5vw;
   background-color: #ff5b5b;
   color: #3b3e47;
-  font-family: 'Fascinate', serif;
-  horiz-align: center;
-  font-size: 5vw;
-  width: 14vw;
+  font-family: 'Comfortaa', cursive;
+  font-weight: bold;
+  text-align: center;
+  font-size: 5.5vw;
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-user-select: none;

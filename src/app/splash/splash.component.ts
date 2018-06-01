@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
 import {
   trigger,
   state,
@@ -6,6 +6,7 @@ import {
   animate,
   transition
 } from '@angular/animations';
+import {JQUERY_TOKEN} from '../common/jquery.service';
 
 @Component({
   selector: 'app-splash',
@@ -26,11 +27,12 @@ import {
 export class SplashComponent implements OnInit {
   show = true;
 
-  constructor() {
+  constructor(@Inject(JQUERY_TOKEN) private $: any) {
 
   }
 
   ngOnInit() {
+    this.$('#simple-modal').modal('hide');
   }
 
   get getState(): String {

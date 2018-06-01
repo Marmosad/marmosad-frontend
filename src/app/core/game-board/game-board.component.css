@@ -1,12 +1,98 @@
-.game-board-card{
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
+.game-board-card {
   margin: 0;
   padding: 0;
 }
-h1{
-  font-family: 'Fascinate', black, serif;
-  font-size: 2.5vh;
+
+h1 {
+  font-family: 'Comfortaa', cursive;
+  font-weight: bold;
+  font-size: 3vh;
+  padding-top: 0.5vh;
   background-color: #ff5b5b;
   margin: 0;
   text-align: center;
   color: #3b3e47;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.blackCard {
+  padding: 20px;
+  margin: 0 10px 0 10px;
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  border-top: #ff5b5b 0.5vw solid;
+  background-color: #263237;
+  max-width: 14%;
+}
+
+h3{
+  font-family: 'Comfortaa', cursive;
+  font-weight: lighter;
+}
+
+p{
+  color: #3b3e47;
+  font-family: 'Comfortaa', cursive;
+  font-weight: bolder;
+}
+
+.blackCardText{
+  color: white;
+  font-family: 'Comfortaa', cursive;
+  font-weight: lighter;
+}
+
+.blackCardId{
+  color: white;
+  font-family: 'Comfortaa', cursive;
+  font-weight: bolder;
+}
+
+.whiteCard {
+  padding: 20px;
+  margin: 0 10px 0 10px;
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  border-top: #ff5b5b 0.5vw solid;
+  max-width: 14%;
+}
+
+.whiteCard:hover {
+  border-bottom: #ff5b5b 0.5vw solid;
+  border-top: #ff5b5b 0vw solid;
+  /* box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22); */
+}
+
+.submissions {
+  overflow: hidden;
+  padding: 0 0 0 0;
+}
+
+.hand {
+  padding: 0 0 0 0;
+}
+
+.controls {
+
+}
+
+button {
+  background-color: #ff5b5b;
+  color: #3b3e47;
+  font-family: 'Comfortaa', cursive;
+  font-weight: bold;
+  font-size: 3vh;
+}
+
+button:hover {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+  background-color: white;
+  color: #ff5b5b;
+  cursor: pointer;
+}
+
+#ghost_SPOOOK {
+  opacity: 0.3;
 }
