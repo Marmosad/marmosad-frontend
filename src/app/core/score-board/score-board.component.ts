@@ -16,7 +16,7 @@ export class ScoreBoardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.displayService.getScoreSubject.subscribe((players: Player[]) => {
-      this.players = players;
+      this.players = players
       console.log(players);
     });
   }

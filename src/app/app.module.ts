@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule, MatCardModule, MatListModule, MatIconModule, MatFormFieldModule } from '@angular/material';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
@@ -19,7 +19,12 @@ import { ScoreBoardComponent } from './core/score-board/score-board.component';
 import { BoardCoreComponent } from './core/board-core/board-core.component';
 import { GameBoardComponent } from './core/game-board/game-board.component';
 import { DisplayService } from './core/display-service/display-service.service';
+import { JQUERY_TOKEN } from './common/jquery.service';
+import { SimpleModalComponent } from './common/simple-modal.component';
+import { LobbyComponent } from './core/lobby/lobby.component';
+import {CoreCanActivate} from './core/core-route-activator.service';
 
+declare let $: any;
 
 @NgModule({
   declarations: [
@@ -33,6 +38,8 @@ import { DisplayService } from './core/display-service/display-service.service';
     ScoreBoardComponent,
     BoardCoreComponent,
     GameBoardComponent,
+    SimpleModalComponent,
+    LobbyComponent
   ],
   imports: [
     MatCardModule,
@@ -47,7 +54,11 @@ import { DisplayService } from './core/display-service/display-service.service';
     AppRoutingModule,
     FlexLayoutModule
   ],
-  providers: [SocketIoService, DisplayService],
+  providers: [SocketIoService,
+    DisplayService,
+    CoreCanActivate,
+    {provide: JQUERY_TOKEN, useValue: $}
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
