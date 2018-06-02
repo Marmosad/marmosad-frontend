@@ -40,7 +40,7 @@ export class SplashNavigateComponent implements OnInit {
   }
 
   private animate = (callRoute): void => {
-    // console.log('redirecting to core');
+    console.log('redirecting to core');
     this.routeOut.emit(null);
     this.toggle();
     setTimeout(() => {

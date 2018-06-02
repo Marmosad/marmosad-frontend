@@ -24,6 +24,9 @@ import {Router} from '@angular/router';
   ]
 })
 export class BoardCoreComponent implements OnInit, OnDestroy {
+  playerName: string;
+  showName = true;
+  hasName = false;
   showBoard = false;
 
   constructor(private socketService: SocketIoService, private router: Router) {
@@ -32,9 +35,30 @@ export class BoardCoreComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.socketService.hasSocket) {
       console.log('hasSocket');
+    setTimeout(() => {
+      this.toggleName();
+    }, 1);
+    if (this.socketService.hasSocket) {
+      this.hasName = true;
+      this.socketService.initSocket();
       setTimeout(() => {
         this.toggleBoard();
       }, 10);
+    }
+  }
+
+  ngOnDestroy() {
+    this.socketService.closeSocket();
+  }
+
+  public setPlayerName(playerName: string): void {
+    console.log('setPlayerName');
+    this.toggleName();
+    setTimeout(() => {
+      this.playerName = playerName;
+      this.hasName = true;
+      this.socketService.setPlayerName(playerName);
+      this.socketService.initSocket();
     }
   }
 

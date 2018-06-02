@@ -26,8 +26,8 @@ export class DisplayService {
       this.submissionsSubject.next(display.submissions);
       this.blackCardSubject.next(display.blackCard);
       this.isJudge = (this.socketService.getSocketId() === this.display.currentJudge);
-      // console.log('display service got an update');
-      // console.log(display);
+      console.log('display service got an update');
+      console.log(display);
     });
   }
 

@@ -68,13 +68,13 @@ export class SocketIoService {
 
   public initSocket(): void {
     if (this.socket === undefined) {
-      // this.socket = SocketIo({ query: 'name=' + this.playerName });
-      this.socket = SocketIo(this.SERVER_URL, { query: 'name=' + this.playerName });
+      this.socket = SocketIo({ query: 'name=' + this.playerName });
+      // this.socket = SocketIo(this.SERVER_URL, { query: 'name=' + this.playerName });
     } else {
       this.socket.connect();
     }
     this.socket.emit('userJoined');
-    console.log(this.socket);
+    console.log('init ran ' + this.socket);
   }
 
   get hasSocket() {
@@ -105,7 +105,7 @@ export class SocketIoService {
   public onDisplayUpdate(): Observable<Display> {
     return new Observable<Display>(observer => {
         this.socket.on('updateDisplay', (data: Display) => {
-          // console.log('Socket got an update for display');
+          console.log('Socket got an update for display');
           observer.next(data);
         });
       }
@@ -139,6 +139,6 @@ export class SocketIoService {
 
   public submitJudgement(card): void {
     this.socket.emit('judgment', card);
-    // console.log('judged');
+    console.log('judged');
   }
 }
