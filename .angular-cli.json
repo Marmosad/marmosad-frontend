@@ -20,14 +20,14 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "src/styles.css",
-        "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+        "styles.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css"
       ],
       "scripts": [
-        "./node_modules/jquery/dist/jquery.min.js",
-        "./node_modules/popper.js/dist/umd/popper.min.js",
-        "./node_modules/bootstrap/dist/js/bootstrap.min.js"
-      ]
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/popper.js/dist/umd/popper.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -49,14 +49,9 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "src/styles.css",
-        "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+        "styles.css"
       ],
-      "scripts": [
-        "./node_modules/jquery/dist/jquery.min.js",
-        "./node_modules/popper.js/dist/umd/popper.min.js",
-        "./node_modules/bootstrap/dist/js/bootstrap.min.js"
-      ]
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
