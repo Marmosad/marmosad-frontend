@@ -1,7 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, Inject} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { SocketIoService } from '../../socket-io/socket-io.service';
 import {Router} from '@angular/router';
+import { JQUERY_TOKEN } from '../../common/jquery.service';
 
 @Component({
   selector: 'app-lobby',
@@ -29,7 +30,7 @@ export class LobbyComponent implements OnInit {
     this.showName = !this.showName;
   }
 
-  constructor(private socketService: SocketIoService, private router: Router) { }
+  constructor(private socketService: SocketIoService, private router: Router, @Inject(JQUERY_TOKEN) private jq_token: any ) { }
 
   ngOnInit() {
     setTimeout(() => {
@@ -46,7 +47,13 @@ export class LobbyComponent implements OnInit {
     setTimeout(() => {
       this.socketService.setPlayerName(playerName);
       this.socketService.initSocket();
-      this.router.navigate(['/core/game']);
+      this.socketService.onPlayerNumber().subscribe((data:any) => {
+        if(data.playerNumber > data.playerLimit) {
+          this.jq_token('#simple-modal').modal('show');
+        } else {
+          this.router.navigate(['/core/game']);
+        }
+      });
     }, 300);
   }
 

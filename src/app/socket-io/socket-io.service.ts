@@ -102,6 +102,16 @@ export class SocketIoService {
     );
   }
 
+  public onPlayerNumber(): Observable<Message> {
+    return new Observable<Message>(observer => {
+        this.socket.on('playerNumber', (data: Message) => {
+          console.log(data);
+          observer.next(data);
+        });
+      }
+    );
+  }
+
   public onDisplayUpdate(): Observable<Display> {
     return new Observable<Display>(observer => {
         this.socket.on('updateDisplay', (data: Display) => {
