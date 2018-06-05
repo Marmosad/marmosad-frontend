@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule, MatCardModule, MatListModule, MatIconModule, MatFormFieldModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { GlobalNavbarComponent } from './global-navbar/global-navbar.component';
@@ -19,10 +20,10 @@ import { ScoreBoardComponent } from './core/score-board/score-board.component';
 import { BoardCoreComponent } from './core/board-core/board-core.component';
 import { GameBoardComponent } from './core/game-board/game-board.component';
 import { DisplayService } from './core/display-service/display-service.service';
-import { JQUERY_TOKEN } from './common/jquery.service';
-import { SimpleModalComponent } from './common/simple-modal.component';
+import { SimpleModalComponent } from './common/simple-modal/simple-modal.component';
 import { LobbyComponent } from './core/lobby/lobby.component';
 import {CoreCanActivate} from './core/core-route-activator.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 declare let $: any;
 
@@ -52,12 +53,13 @@ declare let $: any;
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgbModule.forRoot(),
+    HttpClientModule
   ],
   providers: [SocketIoService,
     DisplayService,
-    CoreCanActivate,
-    {provide: JQUERY_TOKEN, useValue: $}
+    CoreCanActivate
     ],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, Inject, ViewChild} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { SocketIoService } from '../../socket-io/socket-io.service';
 import {Router} from '@angular/router';
+import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { SimpleModalComponent } from '../../common/simple-modal/simple-modal.component';
 
 @Component({
   selector: 'app-lobby',
@@ -25,6 +27,8 @@ export class LobbyComponent implements OnInit {
   playerName: string;
   hasName = false;
 
+  @ViewChild('popup') playerLimitWarning: SimpleModalComponent;
+
   private toggleName() {
     this.showName = !this.showName;
   }
@@ -42,12 +46,18 @@ export class LobbyComponent implements OnInit {
   }
 
   public enterGame(playerName: string): void {
-    this.toggleName();
-    setTimeout(() => {
-      this.socketService.setPlayerName(playerName);
-      this.socketService.initSocket();
-      this.router.navigate(['/core/game']);
-    }, 300);
+      this.socketService.getPlayerLimit().subscribe((data: any) => {
+        if (data.isLimitReached) {
+          this.playerLimitWarning.openDialog();
+        } else {
+          this.socketService.setPlayerName(playerName);
+          this.socketService.initSocket();
+          this.toggleName();
+          setTimeout(() => {
+            this.router.navigate(['/core/game']);
+          }, 300);
+        }
+      });
   }
 
   chooseName(playerName: string): void {

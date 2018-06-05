@@ -6,7 +6,6 @@ import {
   animate,
   transition
 } from '@angular/animations';
-import {JQUERY_TOKEN} from '../common/jquery.service';
 
 @Component({
   selector: 'app-splash',
@@ -27,12 +26,11 @@ import {JQUERY_TOKEN} from '../common/jquery.service';
 export class SplashComponent implements OnInit {
   show = true;
 
-  constructor(@Inject(JQUERY_TOKEN) private $: any) {
+  constructor() {
 
   }
 
   ngOnInit() {
-    this.$('#simple-modal').modal('hide');
   }
 
   get getState(): String {

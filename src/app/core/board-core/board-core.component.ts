@@ -34,10 +34,7 @@ export class BoardCoreComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (this.socketService.hasSocket) {
-      console.log('hasSocket');
-    setTimeout(() => {
-      this.toggleName();
-    }, 1);
+      console.log('hasSocket'); }
     if (this.socketService.hasSocket) {
       this.hasName = true;
       this.socketService.initSocket();
@@ -47,19 +44,14 @@ export class BoardCoreComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
-    this.socketService.closeSocket();
-  }
-
   public setPlayerName(playerName: string): void {
     console.log('setPlayerName');
-    this.toggleName();
     setTimeout(() => {
       this.playerName = playerName;
       this.hasName = true;
       this.socketService.setPlayerName(playerName);
       this.socketService.initSocket();
-    }
+    });
   }
 
   ngOnDestroy() {

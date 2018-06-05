@@ -5,6 +5,7 @@ import * as SocketIo from 'socket.io-client';
 import { Display } from '../interfaces/display';
 import { WhiteCard } from '../interfaces/white-card';
 import { Player } from '../interfaces/player';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
@@ -16,7 +17,7 @@ export class SocketIoService {
   private players: Player[] = [];
   private submissions: WhiteCard[] = [];
 
-  constructor() {
+  constructor(private http: HttpClient) {
 
   }
 
@@ -68,8 +69,8 @@ export class SocketIoService {
 
   public initSocket(): void {
     if (this.socket === undefined) {
-      this.socket = SocketIo({ query: 'name=' + this.playerName });
-      // this.socket = SocketIo(this.SERVER_URL, { query: 'name=' + this.playerName });
+      // this.socket = SocketIo({ query: 'name=' + this.playerName });
+      this.socket = SocketIo(this.SERVER_URL, { query: 'name=' + this.playerName });
     } else {
       this.socket.connect();
     }
@@ -96,6 +97,16 @@ export class SocketIoService {
   public onMessage(): Observable<Message> {
     return new Observable<Message>(observer => {
         this.socket.on('message', (data: Message) => {
+          observer.next(data);
+        });
+      }
+    );
+  }
+
+  public onPlayerAmount(): Observable<Message> {
+    return new Observable<Message>(observer => {
+        this.socket.on('playerAmount', (data: Message) => {
+          console.log(data);
           observer.next(data);
         });
       }
@@ -140,5 +151,9 @@ export class SocketIoService {
   public submitJudgement(card): void {
     this.socket.emit('judgment', card);
     console.log('judged');
+  }
+
+  public getPlayerLimit(): Observable<any> {
+    return this.http.get(this.SERVER_URL + '/playerLimit');
   }
 }
