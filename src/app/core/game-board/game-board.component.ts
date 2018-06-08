@@ -8,7 +8,7 @@ import { SocketIoService } from '../../socket-io/socket-io.service';
 import { fromEvent } from 'rxjs/observable/fromEvent';
 import { interval } from 'rxjs/observable/interval';
 import { throttle } from 'rxjs/operators';
-import { dragAnimation } from './dragAnimation';
+import { dragAnimation } from './drag-animation';
 
 @Component({
   selector: 'app-game-board',
