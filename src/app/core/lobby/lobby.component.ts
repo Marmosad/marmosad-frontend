@@ -26,6 +26,7 @@ export class LobbyComponent implements OnInit {
   private showName = true;
   playerName: string;
   hasName = false;
+  private inputValue = "";
 
   @ViewChild('popup') playerLimitWarning: SimpleModalComponent;
 
@@ -46,14 +47,15 @@ export class LobbyComponent implements OnInit {
   }
 
   public enterGame(playerName: string): void {
+      this.chooseName(this.playerName)
       this.socketService.getPlayerLimit().subscribe((data: any) => {
         if (data.isLimitReached) {
           this.playerLimitWarning.openDialog();
         } else {
           this.socketService.setPlayerName(playerName);
-          this.socketService.initSocket();
           this.toggleName();
           setTimeout(() => {
+            this.socketService.initSocket();
             this.router.navigate(['/core/game']);
           }, 300);
         }

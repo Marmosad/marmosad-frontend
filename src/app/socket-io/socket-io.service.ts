@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Location } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 import { Message } from '../interfaces/message';
 import * as SocketIo from 'socket.io-client';
@@ -17,7 +18,7 @@ export class SocketIoService {
   private players: Player[] = [];
   private submissions: WhiteCard[] = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private location: Location) {
 
   }
 
@@ -69,8 +70,8 @@ export class SocketIoService {
 
   public initSocket(): void {
     if (this.socket === undefined) {
-      // this.socket = SocketIo({ query: 'name=' + this.playerName });
-      this.socket = SocketIo(this.SERVER_URL, { query: 'name=' + this.playerName });
+      this.socket = SocketIo({ query: 'name=' + this.playerName });
+      // this.socket = SocketIo(this.SERVER_URL, { query: 'name=' + this.playerName });
     } else {
       this.socket.connect();
     }
@@ -154,6 +155,6 @@ export class SocketIoService {
   }
 
   public getPlayerLimit(): Observable<any> {
-    return this.http.get(this.SERVER_URL + '/playerLimit');
+    return this.http.get(this.location.prepareExternalUrl('') + '/playerLimit');
   }
 }

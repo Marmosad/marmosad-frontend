@@ -94,3 +94,7 @@ button:hover {
   color: #ff5b5b;
   cursor: pointer;
 }
+
+p{
+  top: 15vh;
+}
