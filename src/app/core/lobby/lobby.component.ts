@@ -4,6 +4,9 @@ import { SocketIoService } from '../../socket-io/socket-io.service';
 import {Router} from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { SimpleModalComponent } from '../../common/simple-modal/simple-modal.component';
+import { Board } from '../../interfaces/board';
+import { BoardService } from '../board.service';
+import { Observable, Subject } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-lobby',
@@ -26,7 +29,10 @@ export class LobbyComponent implements OnInit {
   private showName = true;
   playerName: string;
   hasName = false;
-  private inputValue = "";
+  inputValue = '';
+
+  selectedBoard: Board;
+  boards = new Array<Board>();
 
   @ViewChild('popup') playerLimitWarning: SimpleModalComponent;
 
@@ -34,12 +40,17 @@ export class LobbyComponent implements OnInit {
     this.showName = !this.showName;
   }
 
-  constructor(private socketService: SocketIoService, private router: Router) { }
+  constructor(
+    private socketService: SocketIoService,
+    private router: Router,
+    private boardService: BoardService
+  ) { }
 
   ngOnInit() {
     setTimeout(() => {
       this.toggleName();
     }, 1);
+    this.setBoards();
   }
 
   get getNameState(): String {
@@ -47,17 +58,20 @@ export class LobbyComponent implements OnInit {
   }
 
   public enterGame(playerName: string): void {
-      this.chooseName(this.playerName)
-      this.socketService.getPlayerLimit().subscribe((data: any) => {
-        if (data.isLimitReached) {
-          this.playerLimitWarning.openDialog();
-        } else {
+      this.chooseName(this.playerName);
+      this.setBoards().subscribe((res) => {
+        if (this.selectedBoard
+          && res.find((board) => board.socketUrl === this.selectedBoard.socketUrl)
+          && !res.find((board) => board.socketUrl === this.selectedBoard.socketUrl).playerLimitReached) {
           this.socketService.setPlayerName(playerName);
           this.toggleName();
           setTimeout(() => {
+            this.socketService.setUrl(this.selectedBoard.socketUrl);
             this.socketService.initSocket();
             this.router.navigate(['/core/game']);
           }, 300);
+        } else {
+          this.playerLimitWarning.openDialog();
         }
       });
   }
@@ -65,5 +79,14 @@ export class LobbyComponent implements OnInit {
   chooseName(playerName: string): void {
     this.playerName = playerName;
     this.hasName = true;
+  }
+
+  private setBoards(): Observable<Board[]> {
+    const result = new Subject<Board[]>();
+    this.boardService.getBoards().subscribe((res) => {
+      this.boards = res;
+      result.next(res);
+    });
+    return result;
   }
 }

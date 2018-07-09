@@ -17,6 +17,7 @@ export class SocketIoService {
   private display: Display;
   private players: Player[] = [];
   private submissions: WhiteCard[] = [];
+  private url = '';
 
   constructor(private http: HttpClient, private location: Location) {
 
@@ -73,7 +74,7 @@ export class SocketIoService {
       this.socket = SocketIo({ query: 'name=' + this.playerName });
       // this.socket = SocketIo(this.SERVER_URL, { query: 'name=' + this.playerName });
     } else {
-      this.socket.connect();
+      this.socket.connect(this.location.prepareExternalUrl(this.url));
     }
     this.socket.emit('userJoined');
     console.log('init ran ' + this.socket);
@@ -156,5 +157,9 @@ export class SocketIoService {
 
   public getPlayerLimit(): Observable<any> {
     return this.http.get(this.location.prepareExternalUrl('') + '/playerLimit');
+  }
+
+  public setUrl(url = '') {
+    this.url = url;
   }
 }

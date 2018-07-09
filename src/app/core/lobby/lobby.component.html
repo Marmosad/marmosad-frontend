@@ -6,14 +6,20 @@
     <input matInput placeholder="Wut's ur name?" (keyup.enter)="enterGame(inputValue)" maxlength="14" [(ngModel)]="inputValue">
     <p>Characters left: {{ 14 - inputValue.length }}</p>
   </mat-card>
+  <select [(ngModel)]="selectedBoard">
+    <option hidden selected [ngValue]="">Choose a board!</option>
+    <option *ngFor="let board of boards" [ngValue]="board">
+      {{board.name}}
+    </option>
+  </select>
 </mat-card>
 
 <app-simple-modal #popup>
   <div modal-title>
-    Too many players
+    Too many players or Board closed
   </div>
   <div modal-body>
-    Please try again later.
+    Please try again
   </div>
 </app-simple-modal>
 

@@ -24,6 +24,7 @@ import { SimpleModalComponent } from './common/simple-modal/simple-modal.compone
 import { LobbyComponent } from './core/lobby/lobby.component';
 import {CoreCanActivate} from './core/core-route-activator.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { BoardService } from './core/board.service';
 
 declare let $: any;
 
@@ -57,10 +58,12 @@ declare let $: any;
     NgbModule.forRoot(),
     HttpClientModule
   ],
-  providers: [SocketIoService,
+  providers: [
+    SocketIoService,
     DisplayService,
-    CoreCanActivate
-    ],
+    CoreCanActivate,
+    BoardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
