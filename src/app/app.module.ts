@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule, MatCardModule, MatListModule, MatIconModule, MatFormFieldModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,9 +25,13 @@ import { LobbyComponent } from './core/lobby/lobby.component';
 import {CoreCanActivate} from './core/core-route-activator.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { BoardService } from './core/board.service';
+import { ConfigService } from './common/services/config.service';
 
 declare let $: any;
 
+export function initializeApp(appConfig: ConfigService) {
+  return () => appConfig.load();
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +66,11 @@ declare let $: any;
     SocketIoService,
     DisplayService,
     CoreCanActivate,
-    BoardService
+    BoardService,
+    ConfigService,
+    { provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [ConfigService], multi: true }
   ],
   bootstrap: [AppComponent]
 })
