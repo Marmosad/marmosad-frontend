@@ -9,7 +9,7 @@ import { Subject } from 'rxjs/Subject';
   styleUrls: ['./score-board.component.scss']
 })
 export class ScoreBoardComponent implements OnInit, OnDestroy {
-  private players: Player[] = [];
+  public players: Player[] = [];
 
   constructor(private displayService: DisplayService) {
   }

@@ -18,9 +18,10 @@ import { dragAnimation } from './drag-animation';
 })
 
 export class GameBoardComponent implements OnInit {
-  private hand: WhiteCard[];
-  private blackCard: BlackCard;
-  private submissions: WhiteCard[];
+  public blackCard: BlackCard;
+  public hand: WhiteCard[];
+  public submissions: WhiteCard[];
+
   private ghostCard = {
     cardId: null,
     body: '',
@@ -140,11 +141,11 @@ export class GameBoardComponent implements OnInit {
     this.draggedCard = null;
   }
 
-  private startGame(): void {
+  public startGame(): void {
     this.socketIoService.startGame();
   }
 
-  private resetGame(): void {
+  public resetGame(): void {
     this.socketIoService.resetGame();
   }
 
