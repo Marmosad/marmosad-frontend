@@ -6,13 +6,18 @@
     <input matInput placeholder="Wut's ur name?" (keyup.enter)="enterGame(inputValue)" maxlength="14" [(ngModel)]="inputValue">
     <p>Characters left: {{ 14 - inputValue.length }}</p>
   </mat-card>
-  <select [(ngModel)]="selectedBoard">
-    <option hidden selected [ngValue]="">Choose a board!</option>
-    <option *ngFor="let board of boards" [ngValue]="board">
-      {{board.name}}
-    </option>
-  </select>
 </mat-card>
+
+<div class="game-field-div">
+  <mat-card class="name-field-card">
+      <select class="select" [(ngModel)]="selectedBoard">
+        <option hidden selected [ngValue]="">Choose a board!</option>
+        <option *ngFor="let board of boards" [ngValue]="board">
+          {{board.name}}
+        </option>
+      </select>
+  </mat-card>
+</div>
 
 <app-simple-modal #popup>
   <div modal-title>

@@ -84,10 +84,10 @@ export class LobbyComponent implements OnInit {
   private setBoards(): Observable<Board[]> {
     const result = new Subject<Board[]>();
     this.boardService.getBoards().subscribe((res) => {
-      console.log(res);
       this.boards = res;
       result.next(res);
     });
     return result;
   }
+
 }

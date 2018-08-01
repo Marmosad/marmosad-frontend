@@ -70,10 +70,10 @@ export class SocketIoService {
 
   public initSocket(): void {
     if (this.socket === undefined) {
-      // this.socket = SocketIo({ query: 'name=' + this.playerName });
-      this.socket = SocketIo(this.configService.settings.api + '/' + this.url, { query: 'name=' + this.playerName });
+      // this.socket = SocketIo({ query: 'name=' + this.playerName, path:  '/' + this.url });
+      this.socket = SocketIo(this.configService.settings.api, { query: 'name=' + this.playerName, path: '/' + this.url });
     } else {
-      this.socket.connect(this.configService.settings.api);
+      this.socket.connect(this.configService.settings.api, {path: '/' + this.url});
     }
     this.socket.emit('userJoined');
     console.log('init ran ' + this.socket);
