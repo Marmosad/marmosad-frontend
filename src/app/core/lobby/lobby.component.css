@@ -78,7 +78,7 @@ input:focus {
   padding: 0;
 }
 .game-field-div {
-  padding: 0;
+  padding: 5px;
   width: 30vw;
   height: 16vw;
   max-height: 50vh;
@@ -94,21 +94,19 @@ input:focus {
 select {
   background-color: #ff5b5b;
   color: #3b3e47;
-  transform: translate(0%, 220%);
   font-family: 'Comfortaa', cursive;
   font-weight: bold;
   font-size: 3vh;
-  margin: 20px;
+  margin: 5px;
 }
 
 button {
   background-color: #ff5b5b;
   color: #3b3e47;
-  transform: translate(0%, 220%);
   font-family: 'Comfortaa', cursive;
   font-weight: bold;
   font-size: 3vh;
-  margin: 20px;
+  margin: 5px;
 }
 
 button:hover {

@@ -3,4 +3,5 @@ export interface Board {
   numberOfPlayers: number;
   socketUrl: string;
   playerLimitReached: boolean;
+  playerLimit: number;
 }

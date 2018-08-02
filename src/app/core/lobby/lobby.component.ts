@@ -1,7 +1,7 @@
-import {Component, OnDestroy, OnInit, Inject, ViewChild} from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import { Component, OnDestroy, OnInit, Inject, ViewChild}  from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Router } from '@angular/router';
 import { SocketIoService } from '../../socket-io/socket-io.service';
-import {Router} from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { SimpleModalComponent } from '../../common/simple-modal/simple-modal.component';
 import { Board } from '../../interfaces/board';
@@ -34,7 +34,13 @@ export class LobbyComponent implements OnInit {
   selectedBoard: Board;
   boards = new Array<Board>();
 
+  createBoard = false;
+  updateBoard = true;
+  newPlayerLimit = 3;
+  newBoardName = '';
+
   @ViewChild('popup') playerLimitWarning: SimpleModalComponent;
+  @ViewChild('updateBoardPopup') updateBoardModal: SimpleModalComponent;
 
   private toggleName() {
     this.showName = !this.showName;
@@ -50,7 +56,9 @@ export class LobbyComponent implements OnInit {
     setTimeout(() => {
       this.toggleName();
     }, 1);
-    this.setBoards();
+    this.setBoards().subscribe(() => {
+      this.selectedBoard = this.boards[0];
+    });
   }
 
   get getNameState(): String {
@@ -79,6 +87,58 @@ export class LobbyComponent implements OnInit {
   chooseName(playerName: string): void {
     this.playerName = playerName;
     this.hasName = true;
+  }
+
+  openUpdateBoardModal() {
+    this.newBoardName = this.selectedBoard.name;
+    this.newPlayerLimit = this.selectedBoard.playerLimit;
+    this.updateBoard = true;
+    this.createBoard = false;
+    this.updateBoardModal.openDialog();
+  }
+
+  updateBoardBackend() {
+    this.boardService.updateBoard(this.selectedBoard.name, this.newBoardName, this.newPlayerLimit)
+    .subscribe((res) => {
+      this.setBoards().subscribe(() => {
+        console.log(res.name);
+          this.selectedBoard = this.boards.find((board) => res.name === board.name);
+      });
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  openCreateBoardModal() {
+    this.newBoardName = '';
+    this.newPlayerLimit = 3;
+    this.updateBoard = false;
+    this.createBoard = true;
+    this.updateBoardModal.openDialog();
+  }
+
+  createBoardBackend() {
+    this.boardService.createBoard(this.newBoardName, this.newPlayerLimit)
+    .subscribe((res) => {
+      this.setBoards().subscribe(() => {
+          this.selectedBoard = this.boards.find((board) => this.newBoardName === board.name);
+          this.updateBoardModal.closeDialog('Closed');
+      });
+    }, (err) => {
+      console.log(err);
+      this.updateBoardModal.closeDialog('Closed');
+    });
+  }
+
+  deleteBoardBackend() {
+    this.boardService.deleteBoard(this.selectedBoard.name)
+    .subscribe(() => {
+      this.setBoards().subscribe(() => {
+          this.selectedBoard = this.boards[0] ? this.boards[0] : null;
+      });
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   private setBoards(): Observable<Board[]> {

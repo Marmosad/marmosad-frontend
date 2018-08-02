@@ -18,4 +18,34 @@ export class BoardService {
   public getBoards(): Observable<any> {
     return this.http.get(this.configService.settings.api + '/boards');
   }
+
+  public updateBoard(name: string, newName: string, newPlayerLimit: number): Observable<any> {
+    return this.http.post(
+      this.configService.settings.api + '/boards/update',
+      {
+        name,
+        newPlayerLimit,
+        newName,
+      },
+    );
+  }
+
+  public createBoard(name: string, playerLimit: number): Observable<any> {
+    return this.http.post(
+      this.configService.settings.api + '/boards/generate',
+      {
+        name,
+        playerLimit,
+      },
+    );
+  }
+
+  public deleteBoard(name: string): Observable<any> {
+    return this.http.post(
+      this.configService.settings.api + '/boards/delete',
+      {
+        name,
+      },
+    );
+  }
 }
