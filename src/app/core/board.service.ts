@@ -19,11 +19,11 @@ export class BoardService {
     return this.http.get(this.configService.settings.api + '/boards');
   }
 
-  public updateBoard(name: string, newName: string, newPlayerLimit: number): Observable<any> {
+  public updateBoard(socketUrl: string, newName: string, newPlayerLimit: number): Observable<any> {
     return this.http.post(
       this.configService.settings.api + '/boards/update',
       {
-        name,
+        socketUrl,
         newPlayerLimit,
         newName,
       },

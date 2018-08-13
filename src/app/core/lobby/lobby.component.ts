@@ -72,6 +72,7 @@ export class LobbyComponent implements OnInit {
           && res.find((board) => board.socketUrl === this.selectedBoard.socketUrl)
           && !res.find((board) => board.socketUrl === this.selectedBoard.socketUrl).playerLimitReached) {
           this.socketService.setPlayerName(playerName);
+          console.log(playerName);
           this.toggleName();
           setTimeout(() => {
             this.socketService.setUrl(this.selectedBoard.socketUrl);
@@ -98,11 +99,11 @@ export class LobbyComponent implements OnInit {
   }
 
   updateBoardBackend() {
-    this.boardService.updateBoard(this.selectedBoard.name, this.newBoardName, this.newPlayerLimit)
+    this.boardService.updateBoard(this.selectedBoard.socketUrl, this.newBoardName, this.newPlayerLimit)
     .subscribe((res) => {
       this.setBoards().subscribe(() => {
-        console.log(res.name);
-          this.selectedBoard = this.boards.find((board) => res.name === board.name);
+        console.log(res);
+          this.selectedBoard = this.boards.find((board) => res.socketUrl === board.socketUrl);
       });
     }, (err) => {
       console.log(err);
