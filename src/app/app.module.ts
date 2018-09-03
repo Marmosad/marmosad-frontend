@@ -31,7 +31,6 @@ import { GameBoardComponent } from './core/game-board/game-board.component';
 import { DisplayService } from './core/display-service/display-service.service';
 import { LobbyComponent } from './core/lobby/lobby.component';
 import { CoreCanActivate } from './core/core-route-activator.service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BoardService } from './core/board.service';
 import { ConfigService } from './common/services/config.service';
 import { PlayerLimitComponent } from './core/lobby/player-limit/player-limit.component';
@@ -72,7 +71,6 @@ export function initializeApp(appConfig: ConfigService) {
     BrowserAnimationsModule,
     AppRoutingModule,
     FlexLayoutModule,
-    NgbModule.forRoot(),
     HttpClientModule,
     MatDialogModule,
     MatSidenavModule,
