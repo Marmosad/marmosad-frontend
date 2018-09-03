@@ -71,7 +71,7 @@ export class SocketIoService {
       if (environment.production) {
         this.socket = SocketIo({
           query: 'name=' + this.playerName,
-          path: '/' + this.url
+          path: this.url
         });
       } else {
         this.socket = SocketIo(environment.api, {
@@ -82,7 +82,7 @@ export class SocketIoService {
     } else {
       this.socket.connect(
         environment.api,
-        { path: '/' + this.url }
+        { path: this.url }
       );
     }
     this.socket.emit('userJoined');
