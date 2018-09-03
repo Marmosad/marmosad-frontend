@@ -38,8 +38,6 @@ import { BoardSelectComponent } from './core/lobby/board-select/board-select.com
 import { BoardSelectResolver } from './core/lobby/board-select-resolver.service';
 import { NameService } from './core/lobby/name.service';
 
-declare let $: any;
-
 export function initializeApp(appConfig: ConfigService) {
   return () => appConfig.load();
 }
