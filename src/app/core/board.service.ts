@@ -3,25 +3,24 @@ import { Observable, Subject } from 'rxjs/Rx';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Board } from '../interfaces/board';
-import { ConfigService } from '../common/services/config.service';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class BoardService {
 
   constructor(
     private location: Location,
-    private http: HttpClient,
-    private configService: ConfigService
+    private http: HttpClient
   ) { }
 
 
   public getBoards(): Observable<any> {
-    return this.http.get(this.configService.settings.api + '/boards');
+    return this.http.get(environment.api + '/boards');
   }
 
   public updateBoard(socketUrl: string, newName: string, newPlayerLimit: number): Observable<any> {
     return this.http.post(
-      this.configService.settings.api + '/boards/update',
+      environment.api + '/boards/update',
       {
         socketUrl,
         newPlayerLimit,
@@ -32,7 +31,7 @@ export class BoardService {
 
   public createBoard(name: string, playerLimit: number): Observable<any> {
     return this.http.post(
-      this.configService.settings.api + '/boards/generate',
+      environment.api + '/boards/generate',
       {
         name,
         playerLimit,
@@ -42,7 +41,7 @@ export class BoardService {
 
   public removeBoard(socketUrl: string): Observable<any> {
     return this.http.post(
-      this.configService.settings.api + '/boards/remove',
+      environment.api + '/boards/remove',
       {
         socketUrl,
       },

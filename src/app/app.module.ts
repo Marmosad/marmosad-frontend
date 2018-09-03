@@ -32,15 +32,11 @@ import { DisplayService } from './core/display-service/display-service.service';
 import { LobbyComponent } from './core/lobby/lobby.component';
 import { CoreCanActivate } from './core/core-route-activator.service';
 import { BoardService } from './core/board.service';
-import { ConfigService } from './common/services/config.service';
 import { PlayerLimitComponent } from './core/lobby/player-limit/player-limit.component';
 import { BoardSelectComponent } from './core/lobby/board-select/board-select.component';
 import { BoardSelectResolver } from './core/lobby/board-select-resolver.service';
 import { NameService } from './core/lobby/name.service';
 
-export function initializeApp(appConfig: ConfigService) {
-  return () => appConfig.load();
-}
 @NgModule({
   declarations: [
     AppComponent,
@@ -81,14 +77,7 @@ export function initializeApp(appConfig: ConfigService) {
     CoreCanActivate,
     BoardSelectResolver,
     BoardService,
-    ConfigService,
-    NameService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeApp,
-      deps: [ConfigService],
-      multi: true
-    }
+    NameService
   ],
   bootstrap: [AppComponent]
 })

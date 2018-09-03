@@ -7,8 +7,7 @@ import { Display } from '../interfaces/display';
 import { WhiteCard } from '../interfaces/white-card';
 import { Player } from '../interfaces/player';
 import { HttpClient } from '@angular/common/http';
-import { ConfigService } from '../common/services/config.service';
-
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class SocketIoService {
@@ -19,8 +18,7 @@ export class SocketIoService {
   private submissions: WhiteCard[] = [];
   private url = '';
 
-  constructor(private http: HttpClient, private location: Location, private configService: ConfigService) {
-  }
+  constructor(private http: HttpClient, private location: Location) {}
 
   get getDisplay(): Display {
     return this.display;
@@ -48,7 +46,7 @@ export class SocketIoService {
     this.display = {
       blackCard: {
         cardId: 122,
-        body: 'This is a body of the black card, randomly generated',
+        body: 'This is a body of the black card, randomly generated'
       },
       currentJudge: 'Stellar, she\'s always judge',
       submissions: this.submissions,
@@ -70,10 +68,22 @@ export class SocketIoService {
 
   public initSocket(): void {
     if (this.socket === undefined) {
-      // this.socket = SocketIo({ query: 'name=' + this.playerName, path:  '/' + this.url });
-      this.socket = SocketIo(this.configService.settings.api, { query: 'name=' + this.playerName, path: this.url });
+      if (environment.production) {
+        this.socket = SocketIo({
+          query: 'name=' + this.playerName,
+          path: '/' + this.url
+        });
+      } else {
+        this.socket = SocketIo(environment.api, {
+          query: 'name=' + this.playerName,
+          path: this.url
+        });
+      }
     } else {
-      this.socket.connect(this.configService.settings.api, {path: '/' + this.url});
+      this.socket.connect(
+        environment.api,
+        { path: '/' + this.url }
+      );
     }
     this.socket.emit('userJoined');
     console.log('init ran ' + this.socket);
@@ -97,40 +107,36 @@ export class SocketIoService {
 
   public onMessage(): Observable<Message> {
     return new Observable<Message>(observer => {
-        this.socket.on('message', (data: Message) => {
-          observer.next(data);
-        });
-      }
-    );
+      this.socket.on('message', (data: Message) => {
+        observer.next(data);
+      });
+    });
   }
 
   public onPlayerAmount(): Observable<Message> {
     return new Observable<Message>(observer => {
-        this.socket.on('playerAmount', (data: Message) => {
-          console.log(data);
-          observer.next(data);
-        });
-      }
-    );
+      this.socket.on('playerAmount', (data: Message) => {
+        console.log(data);
+        observer.next(data);
+      });
+    });
   }
 
   public onDisplayUpdate(): Observable<Display> {
     return new Observable<Display>(observer => {
-        this.socket.on('updateDisplay', (data: Display) => {
-          console.log('Socket got an update for display');
-          observer.next(data);
-        });
-      }
-    );
+      this.socket.on('updateDisplay', (data: Display) => {
+        console.log('Socket got an update for display');
+        observer.next(data);
+      });
+    });
   }
 
   public onReset(): Observable<any> {
     return new Observable<any>(observer => {
-        this.socket.on('boardReset', (data: any) => {
-          observer.next(data);
-        });
-      }
-    );
+      this.socket.on('boardReset', (data: any) => {
+        observer.next(data);
+      });
+    });
   }
 
   public closeSocket(): void {
@@ -152,10 +158,6 @@ export class SocketIoService {
   public submitJudgement(card): void {
     this.socket.emit('judgment', card);
     console.log('judged');
-  }
-
-  public getPlayerLimit(): Observable<any> {
-    return this.http.get(this.configService.settings.api + '/playerLimit');
   }
 
   public setUrl(url = '') {
