@@ -1,55 +1,9 @@
-<mat-card class="name-field-div" fxLayout="column" [@nameAnimationState]='getNameState'>
-  <div class="name-field-top" fxFlex="20">
+<mat-card class="name-field-div" fxLayout="column" [@nameAnimationState] = 'getNameState'>
+  <div class="name-field-top"fxFlex="20">
     <h1>Enter Your Name!</h1>
   </div>
   <mat-card class="name-field-card" fxFlex="">
-    <input matInput placeholder="Wut's ur name?" (keyup.enter)="enterGame(inputValue)" maxlength="14" [(ngModel)]="inputValue">
-    <p>Characters left: {{ 14 - inputValue.length }}</p>
+    <input #input matInput placeholder="Wut's ur name?" (keyup.enter)="[enterBoardSelect(input.value)]" maxlength="14">
+    <p>Characters left: {{ 14 - input.value.length }}</p>
   </mat-card>
 </mat-card>
-
-<mat-card class="game-field-div" fxLayout="column">
-  <select class="select" [(ngModel)]="selectedBoard">
-    Choose a board!
-    <option *ngFor="let board of boards" [ngValue]="board">
-      {{board.name}}
-    </option>
-  </select>
-  <button (click)="openUpdateBoardModal()" class="mat-button">Update Board!</button>
-  <button (click)="openCreateBoardModal()" class="mat-button">Create Board!</button>
-  <button (click)="deleteBoardBackend()" class="mat-button">Delete Board!</button>
-</mat-card>
-
-
-<app-simple-modal #updateBoardPopup>
-  <div modal-title>
-    <div *ngIf="updateBoard">Update Board!</div>
-    <div *ngIf="createBoard">Create Board!</div>
-  </div>
-  <div modal-body class="mat-card" fxLayout="column">
-    <mat-card>
-      <input matInput placeholder="Board Name" maxlength="14" [(ngModel)]="newBoardName">
-    </mat-card>
-    <mat-card>
-      How many players?
-      <select class="select" [(ngModel)]="newPlayerLimit">
-        <option *ngFor="let i of [1,2,3,4,5,6,7,8]" [ngValue]="i">
-          {{i}}
-        </option>
-      </select>
-    </mat-card>
-    <mat-card>
-      <button (click)="updateBoardBackend()" *ngIf="updateBoard" class="mat-button">Update Board!</button>
-      <button (click)="createBoardBackend()" *ngIf="createBoard" class="mat-button">Create Board!</button>
-    </mat-card>
-  </div>
-</app-simple-modal>
-
-<app-simple-modal #popup>
-  <div modal-title>
-    Too many players or Board closed
-  </div>
-  <div modal-body>
-    Please try again
-  </div>
-</app-simple-modal>

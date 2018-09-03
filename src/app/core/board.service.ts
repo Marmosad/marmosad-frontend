@@ -40,11 +40,11 @@ export class BoardService {
     );
   }
 
-  public deleteBoard(name: string): Observable<any> {
+  public removeBoard(socketUrl: string): Observable<any> {
     return this.http.post(
-      this.configService.settings.api + '/boards/delete',
+      this.configService.settings.api + '/boards/remove',
       {
-        name,
+        socketUrl,
       },
     );
   }

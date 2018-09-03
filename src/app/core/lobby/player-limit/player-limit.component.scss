@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
+* {
+  font-family: 'Comfortaa', cursive;
+}
+
+h2 {
+  color: #3b3e47;
+  font-size: 3vh;
+}
+
+button {
+  background-color: #ff5b5b;
+  color: #3b3e47;
+  font-weight: normal;
+  font-size: 2vh;
+}
+
+button:hover {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+  background-color: white;
+  color: #ff5b5b;
+  cursor: pointer;
+}
+
+.mat-dialog-container {
+  color: #3b3e47;
+  padding: 0;
+  font-size: 2vh;
+}

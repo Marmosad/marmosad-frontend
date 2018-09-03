@@ -1,7 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule, MatCardModule, MatListModule, MatIconModule, MatFormFieldModule } from '@angular/material';
+import {
+  MatInputModule,
+  MatCardModule,
+  MatListModule,
+  MatIconModule,
+  MatFormFieldModule,
+  MatDialogModule,
+  MatSidenavModule,
+  MatRadioModule
+} from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,12 +29,15 @@ import { ScoreBoardComponent } from './core/score-board/score-board.component';
 import { BoardCoreComponent } from './core/board-core/board-core.component';
 import { GameBoardComponent } from './core/game-board/game-board.component';
 import { DisplayService } from './core/display-service/display-service.service';
-import { SimpleModalComponent } from './common/simple-modal/simple-modal.component';
 import { LobbyComponent } from './core/lobby/lobby.component';
-import {CoreCanActivate} from './core/core-route-activator.service';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { CoreCanActivate } from './core/core-route-activator.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BoardService } from './core/board.service';
 import { ConfigService } from './common/services/config.service';
+import { PlayerLimitComponent } from './core/lobby/player-limit/player-limit.component';
+import { BoardSelectComponent } from './core/lobby/board-select/board-select.component';
+import { BoardSelectResolver } from './core/lobby/board-select-resolver.service';
+import { NameService } from './core/lobby/name.service';
 
 declare let $: any;
 
@@ -44,8 +56,9 @@ export function initializeApp(appConfig: ConfigService) {
     ScoreBoardComponent,
     BoardCoreComponent,
     GameBoardComponent,
-    SimpleModalComponent,
-    LobbyComponent
+    LobbyComponent,
+    PlayerLimitComponent,
+    BoardSelectComponent
   ],
   imports: [
     MatCardModule,
@@ -60,19 +73,27 @@ export function initializeApp(appConfig: ConfigService) {
     AppRoutingModule,
     FlexLayoutModule,
     NgbModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    MatSidenavModule,
+    MatRadioModule
   ],
+  entryComponents: [PlayerLimitComponent],
   providers: [
     SocketIoService,
     DisplayService,
     CoreCanActivate,
+    BoardSelectResolver,
     BoardService,
     ConfigService,
-    { provide: APP_INITIALIZER,
+    NameService,
+    {
+      provide: APP_INITIALIZER,
       useFactory: initializeApp,
-      deps: [ConfigService], multi: true }
+      deps: [ConfigService],
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

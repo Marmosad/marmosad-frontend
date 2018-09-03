@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
+* {
+  font-family: 'Comfortaa', cursive;
+}
+
+button {
+  background-color: #ff5b5b;
+  color: #3b3e47;
+  font-weight: bold;
+  font-size: 3vh;
+  margin: 5px;
+}
+
+button:hover {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  background-color: white;
+  color: #ff5b5b;
+  cursor: pointer;
+}
+
+h1 {
+  font-family: 'Comfortaa', cursive;
+  font-weight: bold;
+  font-size: 3vh;
+  padding-top: 0.5vh;
+  background-color: #ff5b5b;
+  margin: 0;
+  text-align: center;
+  color: #3b3e47;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+mat-form-field {
+  margin: 5px;
+}
+
+.board-list-card {
+  margin: 1vh;
+  height: calc(100% - 2vh);
+}
+
+.make-scrollable {
+  overflow: auto;
+  height: calc(100% - 5vh);
+}
+
+.radio-button {
+  margin: 15px;
+}
+
+.board-select-card {
+  padding: 0;
+  width: 50vw;
+  height: 70vh;
+  max-height: 85vh;
+  max-width: 177.78vh;
+  margin: auto;
+  position: absolute;
+  top: 11vh;
+  bottom: 1vh;
+  left: 0;
+  right: 0;
+}
+
+.board-option-card {
+  padding: 0;
+}
+
+.tile1 {
+  background-color: magenta;
+}
+
+.tile2 {
+  background-color: lightblue;
+}
+
+.full-width {
+  width: 100%;
+}
