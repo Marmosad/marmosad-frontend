@@ -1,0 +1,17 @@
+<ng-template #modalContent let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="important-msg-label">
+            <ng-content select="[modal-title]"></ng-content>
+        </h4>
+        <button type="button" class="close" (click)="d('cross click')">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <ng-content select="[modal-body]"></ng-content>
+    </div>
+    <div class="modal-footer" *ngIf="useFooter">
+            <ng-content select="[modal-footer]"></ng-content>
+    </div>
+</ng-template>

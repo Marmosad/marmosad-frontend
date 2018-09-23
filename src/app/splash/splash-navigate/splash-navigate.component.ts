@@ -28,6 +28,7 @@ export class SplashNavigateComponent implements OnInit {
   private show = true;
 
   @Output() routeOut: EventEmitter<any> = new EventEmitter();
+  @Output() stopEnter: EventEmitter<any> = new EventEmitter();
 
   toCore(): void {
     this.animate(this.route);
@@ -45,7 +46,7 @@ export class SplashNavigateComponent implements OnInit {
     setTimeout(() => {
       callRoute();
     }, 500);
-  };
+  }
 
   private route = (): void => {
     this.router.navigate(['/core']);

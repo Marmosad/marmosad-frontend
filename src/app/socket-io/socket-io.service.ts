@@ -1,23 +1,25 @@
 import { Injectable } from '@angular/core';
+import { Location } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 import { Message } from '../interfaces/message';
 import * as SocketIo from 'socket.io-client';
 import { Display } from '../interfaces/display';
 import { WhiteCard } from '../interfaces/white-card';
 import { Player } from '../interfaces/player';
+import { HttpClient } from '@angular/common/http';
+import { ConfigService } from '../common/services/config.service';
 
 
 @Injectable()
 export class SocketIoService {
   private playerName: string;
   private socket;
-  private readonly SERVER_URL = 'http://localhost:8081';
   private display: Display;
   private players: Player[] = [];
   private submissions: WhiteCard[] = [];
+  private url = '';
 
-  constructor() {
-
+  constructor(private http: HttpClient, private location: Location, private configService: ConfigService) {
   }
 
   get getDisplay(): Display {
@@ -68,10 +70,10 @@ export class SocketIoService {
 
   public initSocket(): void {
     if (this.socket === undefined) {
-      this.socket = SocketIo({ query: 'name=' + this.playerName });
-      // this.socket = SocketIo(this.SERVER_URL, { query: 'name=' + this.playerName });
+      // this.socket = SocketIo({ query: 'name=' + this.playerName, path:  '/' + this.url });
+      this.socket = SocketIo(this.configService.settings.api, { query: 'name=' + this.playerName, path: this.url });
     } else {
-      this.socket.connect();
+      this.socket.connect(this.configService.settings.api, {path: '/' + this.url});
     }
     this.socket.emit('userJoined');
     console.log('init ran ' + this.socket);
@@ -96,6 +98,16 @@ export class SocketIoService {
   public onMessage(): Observable<Message> {
     return new Observable<Message>(observer => {
         this.socket.on('message', (data: Message) => {
+          observer.next(data);
+        });
+      }
+    );
+  }
+
+  public onPlayerAmount(): Observable<Message> {
+    return new Observable<Message>(observer => {
+        this.socket.on('playerAmount', (data: Message) => {
+          console.log(data);
           observer.next(data);
         });
       }
@@ -140,5 +152,13 @@ export class SocketIoService {
   public submitJudgement(card): void {
     this.socket.emit('judgment', card);
     console.log('judged');
+  }
+
+  public getPlayerLimit(): Observable<any> {
+    return this.http.get(this.configService.settings.api + '/playerLimit');
+  }
+
+  public setUrl(url = '') {
+    this.url = url;
   }
 }
