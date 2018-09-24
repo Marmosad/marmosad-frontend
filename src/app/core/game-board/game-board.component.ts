@@ -89,7 +89,7 @@ export class GameBoardComponent implements OnInit {
   private trackMouseUp() {
     this.mouseUp.subscribe(e => {
       console.log('submit ' + this.cursorInSubmissions);
-      if (this.cursorInSubmissions) {
+      if (this.cursorInSubmissions && !!this.draggedCard) {
         this.submitCard(this.draggedCard);
         this.draggedCard = null;
         this.removeGhost();
