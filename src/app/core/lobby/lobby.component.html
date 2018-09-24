@@ -1,0 +1,9 @@
+<mat-card class="name-field-div" fxLayout="column" [@nameAnimationState] = 'getNameState'>
+  <div class="name-field-top"fxFlex="20">
+    <h1>Enter Your Name!</h1>
+  </div>
+  <mat-card class="name-field-card" fxFlex="">
+    <input #input matInput placeholder="Wut's ur name?" (keyup.enter)="[enterBoardSelect(input.value)]" maxlength="14">
+    <p>Characters left: {{ 14 - input.value.length }}</p>
+  </mat-card>
+</mat-card>

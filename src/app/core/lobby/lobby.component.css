@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
+.board-core {
+  position: absolute;
+  padding: 0;
+  width: 100vw;
+  height: 56.25vw; /* height:width ratio = 9/16 = .5625  */
+  max-height: 85vh;
+  max-width: 190vh; /* 16/9 = 1.778 */
+  margin: auto;
+  top: 11vh;
+  bottom: 1vh; /* vertical center */
+  left: 0;
+  right: 0; /* horizontal center */
+  z-index: -1000;
+}
+
+.user-board {
+}
+
+.game-board {
+}
+
+h1 {
+  font-family: 'Comfortaa', cursive;
+  font-size: 5.5vh;
+  font-weight: bold;
+  background-color: #ff5b5b;
+  margin: 0;
+  text-align: center;
+  color: #3b3e47;
+}
+
+p{
+  color: #ff5b5b;
+  text-align: end;
+  margin-bottom: 4vw;
+  margin-right: 1vw;
+  position: relative;
+  top: 57%;
+  font-family: 'Comfortaa', cursive;
+  font-weight: lighter;
+}
+
+input{
+  margin: 5px;
+  width: 28vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.5vw;
+  border-width: 0 0 5px 0;
+  font-family: 'Comfortaa', cursive;
+  font-weight: lighter;
+  /* box-shadow: 0 3px 9px rgba(0,0,0,0.12), 0 3px 9px rgba(0,0,0,0.24); */
+}
+input:focus {
+  border-color: #ff5b5b;
+  outline: 0 none;
+}
+
+.name-field-div {
+  padding: 0;
+  width: 30vw;
+  height: 18vw; /* height:width ratio = 9/16 = .5625  */
+  max-height: 85vh;
+  max-width: 177.78vh; /* 16/9 = 1.778 */
+  margin: auto;
+  position: absolute;
+  top: 11vh;
+  bottom: 1vh; /* vertical center */
+  left: 0;
+  right: 0; /* horizontal center */
+}
+.name-field-card{
+  margin: 0;
+  padding: 0;
+}

@@ -9,14 +9,14 @@ import { Subject } from 'rxjs/Subject';
   styleUrls: ['./score-board.component.scss']
 })
 export class ScoreBoardComponent implements OnInit, OnDestroy {
-  private players: Player[] = [];
+  public players: Player[] = [];
 
   constructor(private displayService: DisplayService) {
   }
 
   ngOnInit() {
     this.displayService.getScoreSubject.subscribe((players: Player[]) => {
-      this.players = players;
+      this.players = players
       console.log(players);
     });
   }

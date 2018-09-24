@@ -1,9 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule, MatCardModule, MatListModule, MatIconModule, MatFormFieldModule } from '@angular/material';
-import {MatButtonModule} from '@angular/material/button';
+import {
+  MatInputModule,
+  MatCardModule,
+  MatListModule,
+  MatIconModule,
+  MatFormFieldModule,
+  MatDialogModule,
+  MatSidenavModule,
+  MatRadioModule
+} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { GlobalNavbarComponent } from './global-navbar/global-navbar.component';
@@ -19,7 +29,13 @@ import { ScoreBoardComponent } from './core/score-board/score-board.component';
 import { BoardCoreComponent } from './core/board-core/board-core.component';
 import { GameBoardComponent } from './core/game-board/game-board.component';
 import { DisplayService } from './core/display-service/display-service.service';
-
+import { LobbyComponent } from './core/lobby/lobby.component';
+import { CoreCanActivate } from './core/core-route-activator.service';
+import { BoardService } from './core/board.service';
+import { PlayerLimitComponent } from './core/lobby/player-limit/player-limit.component';
+import { BoardSelectComponent } from './core/lobby/board-select/board-select.component';
+import { BoardSelectResolver } from './core/lobby/board-select-resolver.service';
+import { NameService } from './core/lobby/name.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +49,9 @@ import { DisplayService } from './core/display-service/display-service.service';
     ScoreBoardComponent,
     BoardCoreComponent,
     GameBoardComponent,
+    LobbyComponent,
+    PlayerLimitComponent,
+    BoardSelectComponent
   ],
   imports: [
     MatCardModule,
@@ -45,10 +64,21 @@ import { DisplayService } from './core/display-service/display-service.service';
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule,
+    MatDialogModule,
+    MatSidenavModule,
+    MatRadioModule
   ],
-  providers: [SocketIoService, DisplayService],
+  entryComponents: [PlayerLimitComponent],
+  providers: [
+    SocketIoService,
+    DisplayService,
+    CoreCanActivate,
+    BoardSelectResolver,
+    BoardService,
+    NameService
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}
