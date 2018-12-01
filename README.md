@@ -1,6 +1,7 @@
 # MarmosadFront
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.5.
+The app is broken right now because we ran out of Google Cloud credits (We need to go not more MLH hackathons).
+It can be found [here](http://marmosad.me/);
 
 ## Development server
 
