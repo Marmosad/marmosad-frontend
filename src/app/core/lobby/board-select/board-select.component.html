@@ -9,10 +9,10 @@
       <button fxFlex="7" (click)="refreshBoards()" mat-button>Refresh</button>
       <mat-radio-group class="make-scrollable" fxFlex="86" fxFill fxLayout="column" [(ngModel)]="selectedBoard">
         <mat-radio-button *ngFor="let board of boards" color="warn" class="radio-button" [value]="board">
-          {{board.name}}
+          {{board.boardName}}
         </mat-radio-button>
         <mat-radio-button color="warn" class="radio-button" [value]="newBoardToken">
-          {{newBoardToken.name}}
+          {{newBoardToken.boardName}}
         </mat-radio-button>
       </mat-radio-group>
     </mat-card>
@@ -24,7 +24,7 @@
       </div>
       <div fxFlex="40">
         <mat-form-field class="full-width" color="warn">
-          <input matInput placeholder="Board Name" [(ngModel)]="selectedBoard.name">
+          <input matInput placeholder="Board Name" [(ngModel)]="selectedBoard.boardName">
         </mat-form-field>
         <mat-form-field class="full-width" color="warn">
           <input matInput placeholder="Player Limit" [(ngModel)]="selectedBoard.playerLimit">

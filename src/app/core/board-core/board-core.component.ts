@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { SocketIoService } from '../../socket-io/socket-io.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Display } from '../../interfaces/display';
+import { PlayerDisplay } from '../../interfaces/playerDisplay';
 import { Message } from '../../interfaces/message';
 import { DisplayService } from '../display-service/display-service.service';
 import { timeout } from 'q';

@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { Board } from '../../../interfaces/board';
-import { BoardService } from '../../board.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { SocketIoService } from '../../../socket-io/socket-io.service';
-import { PlayerLimitComponent } from '../player-limit/player-limit.component';
-import { NameService } from '../name.service';
+import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material';
+import {Board} from '../../../interfaces/board';
+import {BoardService} from '../../board.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {SocketIoService} from '../../../socket-io/socket-io.service';
+import {PlayerLimitComponent} from '../player-limit/player-limit.component';
+import {NameService} from '../name.service';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 
 const NEW_BOARD: Board = {
-  name: 'New Board',
+  boardName: 'New Board',
   playerLimit: 3,
   numberOfPlayers: 0,
   socketUrl: 'New Board Socket Url',
@@ -18,7 +18,7 @@ const NEW_BOARD: Board = {
 };
 
 @Component({
-  selector: 'board-select',
+  selector: 'app-board-select',
   templateUrl: './board-select.component.html',
   styleUrls: ['./board-select.component.scss']
 })
@@ -26,7 +26,7 @@ export class BoardSelectComponent implements OnInit {
   selectedBoard: Board;
   boards = new Array<Board>();
 
-  public newBoardToken = { ...NEW_BOARD };
+  public newBoardToken = {...NEW_BOARD};
 
   constructor(
     private boardService: BoardService,
@@ -35,7 +35,8 @@ export class BoardSelectComponent implements OnInit {
     private socketService: SocketIoService,
     private dialog: MatDialog,
     private nameService: NameService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.resetBoards(this.activatedRoute.snapshot.data['boards']);
@@ -53,12 +54,8 @@ export class BoardSelectComponent implements OnInit {
   public joinBoard(board: Board) {
     const sub = this.boardService.getBoards().subscribe(res => {
       sub.unsubscribe();
-      if (
-        board &&
-        res.find(resBoard => resBoard.socketUrl === board.socketUrl) &&
-        !res.find(resBoard => resBoard.socketUrl === board.socketUrl)
-          .playerLimitReached
-      ) {
+      if (board && res.find(resBoard => resBoard.socketUrl === board.socketUrl) &&
+        !res.find(resBoard => resBoard.socketUrl === board.socketUrl).playerLimitReached) {
         this.socketService.setPlayerName(this.nameService.getName());
         this.socketService.setUrl(board.socketUrl);
         this.socketService.initSocket();
@@ -71,7 +68,7 @@ export class BoardSelectComponent implements OnInit {
 
   public updateBoard(board: Board) {
     const sub = this.boardService
-      .updateBoard(board.socketUrl, board.name, board.playerLimit)
+      .updateBoard(board.socketUrl, board.boardName, board.playerLimit)
       .switchMap(event =>
         this.boardService.getBoards().map(res => {
           this.resetBoards(res);
@@ -97,12 +94,12 @@ export class BoardSelectComponent implements OnInit {
 
   public createBoard(board: Board) {
     const sub = this.boardService
-      .createBoard (this.selectedBoard.name, this.selectedBoard.playerLimit)
+      .createBoard(this.selectedBoard.boardName, this.selectedBoard.playerLimit)
       .switchMap(event => this.boardService.getBoards())
       .subscribe(res => {
         this.resetBoards(res);
         this.resetSelectedBoard();
-        this.newBoardToken = { ...NEW_BOARD };
+        this.newBoardToken = {...NEW_BOARD};
         sub.unsubscribe();
       });
   }
