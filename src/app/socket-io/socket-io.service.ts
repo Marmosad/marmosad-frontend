@@ -6,10 +6,15 @@ import * as SocketIo from 'socket.io-client';
 import {PlayerDisplay} from '../interfaces/playerDisplay';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
+import {WhiteCard} from '../interfaces/white-card';
+import {BlackCard} from '../interfaces/black-card';
 
 @Injectable()
 export class SocketIoService {
-  private playerName: string;
+  get playerName(): string {
+    return this._playerName;
+  }
+  private _playerName: string;
   private socket;
   private url = '';
 
@@ -19,25 +24,17 @@ export class SocketIoService {
 
   public initSocket(): void {
     if (this.socket === undefined) {
-      if (environment.production) {
-        this.socket = SocketIo({
-          query: 'boardName=' + this.playerName,
+      this.socket = SocketIo(environment.api, {
+          query: 'playerName=' + this._playerName,
           path: this.url
-        });
-      } else {
-        this.socket = SocketIo(environment.api, {
-          query: 'boardName=' + this.playerName,
-          path: this.url
-        });
-      }
+      });
     } else {
       this.socket.connect(
         environment.api,
         {path: this.url}
       );
     }
-    this.socket.emit('userJoined');
-    console.log('init ran ' + this.socket);
+    console.log('init ran ' + this.socket + ' at ' + environment.api, this.url);
   }
 
   get hasSocket() {
@@ -49,7 +46,7 @@ export class SocketIoService {
   }
 
   public setPlayerName(playerName: string): void {
-    this.playerName = playerName;
+    this._playerName = playerName;
   }
 
   public getSocketId(): string {
@@ -102,11 +99,11 @@ export class SocketIoService {
     this.socket.emit('reset', null);
   }
 
-  public submitCard(card): void {
+  public submitCard(card: WhiteCard): void {
     this.socket.emit('submission', card);
   }
 
-  public submitJudgement(card): void {
+  public submitJudgement(card: WhiteCard): void {
     this.socket.emit('judgment', card);
     console.log('judged');
   }

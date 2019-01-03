@@ -14,6 +14,6 @@
       </div>
     </div>
     <input #input type="text" class="chat-input" id="name" fxFlex = 10 fxFill
-           placeholder="Type a message" (keyup.enter)="[sendMessage(input.value), input.value = '']">
+           placeholder="Type a message" (keyup.enter)="[sendMessage(input.value), input.value = '']" maxlength="100">
   </div>
 </mat-card>

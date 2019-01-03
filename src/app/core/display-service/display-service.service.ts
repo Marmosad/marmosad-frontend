@@ -23,7 +23,7 @@ export class DisplayService {
       this.handSubject.next(display.playerHand);
       this.submissionsSubject.next(display.submissions);
       this.blackCardSubject.next(display.blackCard);
-      this.isJudge = (this.socketService.getSocketId() === this.display.currentJudge);
+      this.isJudge = (this.socketService.playerName === display.currentJudge);
       console.log('display service got an update');
       console.log(display);
     });
