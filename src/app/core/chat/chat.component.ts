@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketIoService } from '../../socket-io/socket-io.service';
 import { Message } from '../../interfaces/message';
-import { Display } from '../../interfaces/display';
+import { PlayerDisplay } from '../../interfaces/playerDisplay';
 
 @Component({
   selector: 'app-chat',
@@ -25,9 +25,8 @@ export class ChatComponent implements OnInit {
 
   private socketStart(): void {
   }
-  sendMessage = (message: string, ): void => {
-    const packet: Message = {msg: message, from: this.socketService.getSocketId()};
-    this.socketService.send(packet);
+  sendMessage = (message: string ): void => {
+    this.socketService.send(message);
     // this.messages.push(message);
     message = '';
   }

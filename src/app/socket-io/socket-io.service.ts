@@ -1,104 +1,52 @@
-import { Injectable } from '@angular/core';
-import { Location } from '@angular/common';
-import { Observable } from 'rxjs/Observable';
-import { Message } from '../interfaces/message';
+import {Injectable} from '@angular/core';
+import {Location} from '@angular/common';
+import {Observable} from 'rxjs/Observable';
+import {Message} from '../interfaces/message';
 import * as SocketIo from 'socket.io-client';
-import { Display } from '../interfaces/display';
-import { WhiteCard } from '../interfaces/white-card';
-import { Player } from '../interfaces/player';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import {PlayerDisplay} from '../interfaces/playerDisplay';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import {WhiteCard} from '../interfaces/white-card';
+import {BlackCard} from '../interfaces/black-card';
 
 @Injectable()
 export class SocketIoService {
-  private playerName: string;
+  get playerName(): string {
+    return this._playerName;
+  }
+  private _playerName: string;
   private socket;
-  private display: Display;
-  private players: Player[] = [];
-  private submissions: WhiteCard[] = [];
   private url = '';
 
-  constructor(private http: HttpClient, private location: Location) {}
-
-  get getDisplay(): Display {
-    return this.display;
+  constructor(private http: HttpClient, private location: Location) {
   }
 
-  get socketId() {
-    return this.socket.id;
-  }
-
-  public createFakeDisplay(playerCount: number) {
-    for (let count = 0; count < playerCount; count++) {
-      this.players[count] = {
-        playerName: 'player #' + Math.round(count * 10 * Math.random()),
-        playerId: 'player' + count,
-        hand: this.generateFakeHand(),
-        isJudge: false,
-        score: Math.round(count * 3 * Math.random())
-      };
-      this.submissions[count] = {
-        cardId: Math.round(count * 10 * Math.random()),
-        body: 'This is a body of the white card, randomly generated ' + count,
-        owner: 'player' + count
-      };
-    }
-    this.display = {
-      blackCard: {
-        cardId: 122,
-        body: 'This is a body of the black card, randomly generated'
-      },
-      currentJudge: 'Stellar, she\'s always judge',
-      submissions: this.submissions,
-      players: this.players
-    };
-  }
-
-  private generateFakeHand(): WhiteCard[] {
-    const array: WhiteCard[] = [];
-    for (let count = 0; count < 7; count++) {
-      array[count] = {
-        cardId: Math.round(99 * Math.random()),
-        body: 'This is a body of the white card, randomly generated ' + count,
-        owner: 'player' + count
-      };
-    }
-    return array;
-  }
 
   public initSocket(): void {
     if (this.socket === undefined) {
-      if (environment.production) {
-        this.socket = SocketIo({
-          query: 'name=' + this.playerName,
+      this.socket = SocketIo(environment.api, {
+          query: 'playerName=' + this._playerName,
           path: this.url
-        });
-      } else {
-        this.socket = SocketIo(environment.api, {
-          query: 'name=' + this.playerName,
-          path: this.url
-        });
-      }
+      });
     } else {
       this.socket.connect(
         environment.api,
-        { path: this.url }
+        {path: this.url}
       );
     }
-    this.socket.emit('userJoined');
-    console.log('init ran ' + this.socket);
+    console.log('init ran ' + this.socket + ' at ' + environment.api, this.url);
   }
 
   get hasSocket() {
     return !(this.socket === undefined);
   }
 
-  public send(message: Message): void {
-    this.socket.emit('sendMsg', message);
+  public send(message: string): void {
+    this.socket.emit('chat', message);
   }
 
   public setPlayerName(playerName: string): void {
-    this.playerName = playerName;
+    this._playerName = playerName;
   }
 
   public getSocketId(): string {
@@ -107,7 +55,7 @@ export class SocketIoService {
 
   public onMessage(): Observable<Message> {
     return new Observable<Message>(observer => {
-      this.socket.on('message', (data: Message) => {
+      this.socket.on('chat', (data: Message) => {
         observer.next(data);
       });
     });
@@ -122,9 +70,9 @@ export class SocketIoService {
     });
   }
 
-  public onDisplayUpdate(): Observable<Display> {
-    return new Observable<Display>(observer => {
-      this.socket.on('updateDisplay', (data: Display) => {
+  public onDisplayUpdate(): Observable<PlayerDisplay> {
+    return new Observable<PlayerDisplay>(observer => {
+      this.socket.on('updateDisplay', (data: PlayerDisplay) => {
         console.log('Socket got an update for display');
         observer.next(data);
       });
@@ -151,11 +99,11 @@ export class SocketIoService {
     this.socket.emit('reset', null);
   }
 
-  public submitCard(card): void {
+  public submitCard(card: WhiteCard): void {
     this.socket.emit('submission', card);
   }
 
-  public submitJudgement(card): void {
+  public submitJudgement(card: WhiteCard): void {
     this.socket.emit('judgment', card);
     console.log('judged');
   }

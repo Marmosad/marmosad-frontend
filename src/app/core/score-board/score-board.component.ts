@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Player } from '../../interfaces/player';
+import {Player, Score} from '../../interfaces/player';
 import { DisplayService } from '../display-service/display-service.service';
 import { Subject } from 'rxjs/Subject';
 
@@ -9,14 +9,14 @@ import { Subject } from 'rxjs/Subject';
   styleUrls: ['./score-board.component.scss']
 })
 export class ScoreBoardComponent implements OnInit, OnDestroy {
-  public players: Player[] = [];
+  public players: Score[] = [];
 
   constructor(private displayService: DisplayService) {
   }
 
   ngOnInit() {
-    this.displayService.getScoreSubject.subscribe((players: Player[]) => {
-      this.players = players
+    this.displayService.getScoreSubject.subscribe((players: Score[]) => {
+      this.players = players;
       console.log(players);
     });
   }

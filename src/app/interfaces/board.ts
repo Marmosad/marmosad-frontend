@@ -1,5 +1,5 @@
 export interface Board {
-  name: string;
+  boardName: string;
   numberOfPlayers: number;
   socketUrl: string;
   playerLimitReached: boolean;

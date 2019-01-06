@@ -64,8 +64,6 @@ typings/
 .idea/
 /dist/
 
-
-
-
-
 dist-server
+
+.firebase
