@@ -1,7 +1,7 @@
 # MarmosadFront
 
 The app is broken right now because we ran out of Google Cloud credits (We need to go not more MLH hackathons).
-It can be found [here](http://marmosad.me/);
+It can be found [here](https://marmodb.firebaseapp.com);
 
 ## Development server
 
