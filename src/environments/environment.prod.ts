@@ -1,4 +1,4 @@
 export const environment = {
-  api: 'https://marmosad.me',
+  api: 'http://marmosad.us-east-2.elasticbeanstalk.com',
   production: true
 };

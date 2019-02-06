@@ -23,11 +23,9 @@ app-splash{
   margin: 0 0 0 0;
   padding-bottom: 2.3vw;
   transform: translate(-50%, -50%);
-  border-bottom: 1vw solid #ff5b5b;
+  white-space: nowrap;
 }
 h1{
-  margin: 3vw 0 0 0;
-  margin-left: 3vw;
   display: inline-block;
   font-size: 7vw;
   font-family: 'Comfortaa', cursive;
@@ -41,7 +39,6 @@ h1{
 }
 .goose-icon{
   display: inline-block;
-  margin: 0 7vw 0 0 0;
   height: 15vw;
   width: 15vw;
   box-shadow: 0 3px 9px rgba(0,0,0,0.12), 0 3px 9px rgba(0,0,0,0.24);

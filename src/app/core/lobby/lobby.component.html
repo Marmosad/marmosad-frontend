@@ -1,9 +1,17 @@
-<mat-card class="name-field-div" fxLayout="column" [@nameAnimationState] = 'getNameState'>
-  <div class="name-field-top"fxFlex="20">
-    <h1>Enter Your Name!</h1>
-  </div>
-  <mat-card class="name-field-card" fxFlex="">
-    <input #input matInput placeholder="What's your name, friend :D" (keyup.enter)="[enterBoardSelect(input.value)]" maxlength="14">
-    <p>Characters left: {{ 14 - input.value.length }}</p>
+<mat-card class="name-field-div" fxLayout="column" fxLayoutAlign="start stretch" [@nameAnimationState] = 'getNameState' fxFlex="">
+  <mat-card class="name-field-card" fxFlex="100" fxLayout="column" fxLayoutAlign="start stretch">
+    <mat-card-title class="name-field-top" fxFlex="20">
+      Enter Your Name!
+    </mat-card-title>
+    <input #input matInput placeholder="What's your name, friend :D"
+           (keyup.enter)="[enterBoardSelect(input.value)]"
+           (keyup)="input.value = [cleanInput(input.value)]"
+           maxlength="14" fxFlex="20">
+    <p fxFlex="10">Characters left: {{ 14 - input.value.length }}</p>
+    <p>We ran out of money for some AWS services, so this site serves mixed context instead of pure https. Sorry for the inconvenience :')</p>
+    <p>If you'd still like to play around with our app:</p>
+    <p>Make sure to allow "loading unsafe scripts" in your browser</p>
+    <p></p>
+    <p>We're working actively on a fix right now :D</p>
   </mat-card>
 </mat-card>
