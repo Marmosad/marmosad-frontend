@@ -9,11 +9,12 @@ import {
   MatFormFieldModule,
   MatDialogModule,
   MatSidenavModule,
-  MatRadioModule
+  MatRadioModule,
 } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { GlobalNavbarComponent } from './global-navbar/global-navbar.component';
@@ -68,7 +69,8 @@ import { NameService } from './core/lobby/name.service';
     HttpClientModule,
     MatDialogModule,
     MatSidenavModule,
-    MatRadioModule
+    MatRadioModule,
+    MatProgressSpinnerModule
   ],
   entryComponents: [PlayerLimitComponent],
   providers: [
