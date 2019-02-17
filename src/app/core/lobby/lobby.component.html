@@ -1,9 +1,14 @@
-<mat-card class="name-field-div" fxLayout="column" [@nameAnimationState] = 'getNameState'>
-  <div class="name-field-top"fxFlex="20">
-    <h1>Enter Your Name!</h1>
-  </div>
-  <mat-card class="name-field-card" fxFlex="">
-    <input #input matInput placeholder="What's your name, friend :D" (keyup.enter)="[enterBoardSelect(input.value)]" maxlength="14">
-    <p>Characters left: {{ 14 - input.value.length }}</p>
+<mat-card class="name-field-div" fxLayout="column" fxLayoutAlign="start stretch" [@nameAnimationState] = 'getNameState' fxFlex="">
+  <mat-card class="name-field-card" fxFlex="100" fxLayout="column" fxLayoutAlign="start stretch">
+    <mat-card-title class="name-field-top" fxFlex="20">
+      Enter Your Name!
+    </mat-card-title>
+    <input #input matInput placeholder="What's your name, friend :D"
+           (keyup.enter)="[enterBoardSelect(input.value)]"
+           (keyup)="input.value = [cleanInput(input.value)]"
+           maxlength="14" fxFlex="20">
+    <p fxFlex="10">Characters left: {{ 14 - input.value.length }}</p>
+    <p></p>
+    <p>As a cash saving measure, the GCP cold starts may take a small while.</p>
   </mat-card>
 </mat-card>

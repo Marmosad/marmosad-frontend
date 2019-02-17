@@ -1,7 +1,7 @@
 <div class="splash-wrapper">
-  <div class="center-elements" [@splashAnimationState]='getState'>
+  <div class="center-elements" [@splashAnimationState]='getState' fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap = '5vw'>
     <img src="assets/goose.svg" class="goose-icon">
-    <h1>Marmosad</h1>
+    <h1 fxFlex>Marmosad</h1>
   </div>
   <div class="nav-button">
     <app-splash-navigate (routeOut)="toggle()"></app-splash-navigate>

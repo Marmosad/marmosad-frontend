@@ -78,6 +78,7 @@ export class BoardSelectComponent implements OnInit {
       .subscribe(res => {
         this.resetSelectedBoard(res.socketUrl);
         sub.unsubscribe();
+        this.refreshBoards();
       });
   }
 
@@ -88,6 +89,7 @@ export class BoardSelectComponent implements OnInit {
       .subscribe(res => {
         this.resetBoards(res);
         this.resetSelectedBoard();
+        this.refreshBoards();
         sub.unsubscribe();
       });
   }
@@ -100,6 +102,7 @@ export class BoardSelectComponent implements OnInit {
         this.resetBoards(res);
         this.resetSelectedBoard();
         this.newBoardToken = {...NEW_BOARD};
+        this.refreshBoards();
         sub.unsubscribe();
       });
   }

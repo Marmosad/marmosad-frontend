@@ -1,12 +1,6 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition
-} from '@angular/animations';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Router} from '@angular/router';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-splash-navigate',
@@ -31,26 +25,30 @@ export class SplashNavigateComponent implements OnInit {
   @Output() stopEnter: EventEmitter<any> = new EventEmitter();
 
   toCore(): void {
-    this.animate(this.route);
+    this.animate(this.route, 'core');
   }
 
   // TODO
   toAbout(): void {
-    this.animate(this.route);
+    this.animate(this.route, 'about');
   }
 
-  private animate = (callRoute): void => {
-    console.log('redirecting to core');
-    this.routeOut.emit(null);
-    this.toggle();
-    setTimeout(() => {
-      callRoute();
-    }, 500);
-  }
+  private animate = (callRoute, to): void => {
+    if (to === 'core') {
+      console.log('redirecting to core');
+      this.routeOut.emit(null);
+      this.toggle();
+      setTimeout(() => {
+        callRoute();
+      }, 500);
+    } else {
+      window.location.replace('https://github.com/Marmosad');
+    }
+  };
 
   private route = (): void => {
     this.router.navigate(['/core']);
-  }
+  };
 
   constructor(private router: Router) {
   }

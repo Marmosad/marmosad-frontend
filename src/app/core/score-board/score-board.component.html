@@ -3,7 +3,7 @@
     <h1>Score Board</h1>
   </div>
   <div class="scores" fxFlex="90" fxLayoutAlign="start stretch" fxLayout="column">
-    <mat-list fxLayoutAlign="start stretch" fxLayout="column" >
+    <mat-list fxLayoutAlign="start stretch" fxLayout="column" *ngIf="players">
       <mat-list-item *ngFor="let player of players" fxLayout="column" fxLayoutAlign="start stretch">
         <div class="score-row" fxFlex fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="40px">
           <h2 class="player" fxFlex="40">{{player.playerName}}: {{player.score}}</h2>
@@ -11,5 +11,6 @@
         </div>
       </mat-list-item>
     </mat-list>
+    <mat-spinner *ngIf="!players"></mat-spinner>
   </div>
 </mat-card>

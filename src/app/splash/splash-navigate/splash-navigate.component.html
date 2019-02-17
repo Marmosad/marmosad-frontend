@@ -1,8 +1,8 @@
-<div class="overlay" [@splashButtonsAnimationState] = 'getState'>
-  <div id="enter" (click)="toCore()">
+<div class="overlay" [@splashButtonsAnimationState] = 'getState' fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap = '5vw'>
+  <div id="enter" (click)="toCore()" fxFlex="45">
     <h1>Enter</h1>
   </div>
-  <div id="about" (click)="toAbout()">
+  <div id="about" (click)="toAbout()" fxFlex="45">
     <h1>About</h1>
   </div>
 </div>

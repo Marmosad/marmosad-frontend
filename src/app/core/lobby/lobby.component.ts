@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Router } from '@angular/router';
-import { NameService } from './name.service';
+import {Component, OnChanges, OnInit} from '@angular/core';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {Router} from '@angular/router';
+import {NameService} from './name.service';
 
 @Component({
   selector: 'app-lobby',
@@ -32,7 +32,8 @@ export class LobbyComponent implements OnInit {
   constructor(
     private router: Router,
     private nameService: NameService,
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     setTimeout(() => {
@@ -42,6 +43,10 @@ export class LobbyComponent implements OnInit {
 
   get getNameState(): String {
     return this.showName ? 'start' : 'end';
+  }
+
+  public cleanInput(name: string): string {
+    return name.trim().replace(' ', '');
   }
 
   public enterBoardSelect(name: string): void {
