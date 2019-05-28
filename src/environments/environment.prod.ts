@@ -1,4 +1,4 @@
 export const environment = {
-  api: 'https://marmosad.ca',
+  api: 'https://www.marmosad.ca',
   production: true
 };
